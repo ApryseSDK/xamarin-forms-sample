@@ -1,0 +1,6 @@
+/ContentPage/.vs
+*.user
+*.bak
+*.props
+*.targets
+/ContentPage/packages
