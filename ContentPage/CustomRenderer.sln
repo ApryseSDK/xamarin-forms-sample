@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomRenderer.Droid", "Dro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomRenderer.UWP", "UWP\CustomRenderer.UWP.csproj", "{B975E2A7-E523-4D62-92B0-41606E74D805}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFViewCtrlTools_VS2015", "PDFViewCtrlTools_VS2015\PDFViewCtrlTools_VS2015.csproj", "{25F47CBA-47F3-4011-AFA7-CE8D9B704648}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,6 +140,28 @@ Global
 		{B975E2A7-E523-4D62-92B0-41606E74D805}.Release|x86.ActiveCfg = Release|x86
 		{B975E2A7-E523-4D62-92B0-41606E74D805}.Release|x86.Build.0 = Release|x86
 		{B975E2A7-E523-4D62-92B0-41606E74D805}.Release|x86.Deploy.0 = Release|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|ARM.ActiveCfg = Debug|ARM
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|ARM.Build.0 = Debug|ARM
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|iPhone.ActiveCfg = Debug|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|x64.ActiveCfg = Debug|x64
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|x64.Build.0 = Debug|x64
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|x86.ActiveCfg = Debug|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Debug|x86.Build.0 = Debug|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|Any CPU.ActiveCfg = Release|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|ARM.ActiveCfg = Release|ARM
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|ARM.Build.0 = Release|ARM
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|iPhone.ActiveCfg = Release|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|iPhoneSimulator.ActiveCfg = Release|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|Mixed Platforms.Build.0 = Release|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|x64.ActiveCfg = Release|x64
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|x64.Build.0 = Release|x64
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|x86.ActiveCfg = Release|x86
+		{25F47CBA-47F3-4011-AFA7-CE8D9B704648}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

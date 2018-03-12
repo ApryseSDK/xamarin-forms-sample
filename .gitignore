@@ -4,3 +4,7 @@
 *.props
 *.targets
 /ContentPage/packages
+/ContentPage/UWP/project.lock.json
+/ContentPage/PDFViewCtrlTools_VS2015
+bin
+obj
