@@ -18,6 +18,9 @@ namespace CustomRenderer.UWP
         Application app;
 
         pdftron.PDF.PDFViewCtrl mPdfViewCtrl;
+        pdftron.PDF.Tools.ToolManager mToolManager;
+
+        pdftron.PDF.Tools.Controls.AnnotationCommandBar mAnnotationToolbar;
 
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Page> e)
         {
@@ -45,13 +48,22 @@ namespace CustomRenderer.UWP
         void SetupUserInterface()
         {
             mPdfViewCtrl = new pdftron.PDF.PDFViewCtrl();
-            var stackPanel = new StackPanel();
-            stackPanel.Children.Add(mPdfViewCtrl);
-
             string path = System.IO.Path.Combine(Windows.ApplicationModel.Package.Current.InstalledLocation.Path, "sample.pdf");
             pdftron.PDF.PDFDoc doc = new pdftron.PDF.PDFDoc(path);
             mPdfViewCtrl.SetDoc(doc);
             mPdfViewCtrl.SetPagePresentationMode(pdftron.PDF.PDFViewCtrlPagePresentationMode.e_single_page);
+
+            mToolManager = new pdftron.PDF.Tools.ToolManager(mPdfViewCtrl);
+            mToolManager.EnablePopupMenuOnLongPress = true;
+            mToolManager.IsPopupMenuEnabled = true;
+            mToolManager.PanToolTextSelectionMode = pdftron.PDF.Tools.ToolManager.TextSelectionBehaviour.AlwaysPan;
+            mToolManager.TextMarkupAdobeHack = true;
+
+            mAnnotationToolbar = new pdftron.PDF.Tools.Controls.AnnotationCommandBar(mToolManager);
+
+            var stackPanel = new StackPanel();
+            stackPanel.Children.Add(mAnnotationToolbar);
+            stackPanel.Children.Add(mPdfViewCtrl);
 
             page = new Page();
             page.Content = stackPanel;

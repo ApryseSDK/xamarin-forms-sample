@@ -134,6 +134,10 @@
       <Project>{40272ddb-4e7a-4988-b62a-38b4458f2510}</Project>
       <Name>CustomRenderer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PDFViewCtrlTools_VS2015\PDFViewCtrlTools_VS2015.csproj">
+      <Project>{25f47cba-47f3-4011-afa7-ce8d9b704648}</Project>
+      <Name>PDFViewCtrlTools_VS2015</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="PDFTron.PDFNetUWPApps, Version=6.7.1.53090">
