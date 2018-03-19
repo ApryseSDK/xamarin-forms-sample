@@ -12,4 +12,4 @@ To run the Android or iOS project, install the corresponding NuGet packages.
 
 To run the UWP project, please fill in this form, and a UWP SDK link will be provided for you: https://www.pdftron.com/pdfnet/mobile/request_trial.html.
 
-After obtaining the UWP package, copy `/Samples/PDFViewCtrlTools_VS2015` direction under `ContentPage` folder. i.e. you will have `/ContentPage/PDFViewCtrlTools_VS2015` folder.
+After obtaining the UWP package, copy `/Samples/PDFViewCtrlTools_VS2015` folder to inside `ContentPage` folder. i.e. you will have `/ContentPage/PDFViewCtrlTools_VS2015` folder.
