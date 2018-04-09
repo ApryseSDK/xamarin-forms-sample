@@ -64,9 +64,8 @@
       <HintPath>..\packages\PDFTron.Android.PageCropper.1.0.0\lib\monoandroid80\PageCropper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PDFNetAndroid">
-      <HintPath>..\packages\PDFTron.Android.6.8.0\lib\monoandroid80\PDFNetAndroid.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PDFNetAndroid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFTron.Android.6.8.1\lib\monoandroid80\PDFNetAndroid.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime" />
@@ -74,7 +73,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFTron.Android.Tools.6.8.0\lib\monoandroid80\Tools.dll</HintPath>
+      <HintPath>..\packages\PDFTron.Android.Tools.6.8.1\lib\monoandroid80\Tools.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Arch.Core.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\lib\MonoAndroid80\Xamarin.Android.Arch.Core.Common.dll</HintPath>
