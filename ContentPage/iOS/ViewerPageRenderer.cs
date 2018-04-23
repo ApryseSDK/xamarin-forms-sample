@@ -18,6 +18,7 @@ namespace CustomRenderer.iOS
     public class ViewerPageRenderer : PageRenderer
     {
         private PDFViewCtrl mPdfViewCtrl;
+        private PDFDoc mPdfDoc;
         private ToolManager mToolManager;
         private AnnotationToolbar mAnnotationToolbar;
         private ThumbnailSliderViewController mThumbnailSliderViewController;
@@ -41,6 +42,16 @@ namespace CustomRenderer.iOS
                 System.Diagnostics.Debug.WriteLine(@"			ERROR: ", ex.Message);
             }
         }
+
+		protected override void Dispose(bool disposing)
+		{
+            base.Dispose(disposing);
+
+            mPdfViewCtrl?.CloseDoc();
+            mPdfViewCtrl = null;
+            mPdfDoc?.Close();
+            mPdfDoc = null;
+		}
 
 		public override void WillRotate(UIInterfaceOrientation toInterfaceOrientation, double duration)
 		{
@@ -73,8 +84,8 @@ namespace CustomRenderer.iOS
             });
 
             var docPath = "sample.pdf";
-            var pdfdoc = new PDFDoc(docPath);
-            mPdfViewCtrl.Doc = TypeConvertHelper.ConvPDFDocToNative(pdfdoc);
+            mPdfDoc = new PDFDoc(docPath);
+            mPdfViewCtrl.Doc = TypeConvertHelper.ConvPDFDocToNative(mPdfDoc);
             mPdfViewCtrl.PagePresentationMode = PagePresentationModes.e_single_page;
             mPdfViewCtrl.SetHighlightFields(true);
 
