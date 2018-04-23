@@ -43,31 +43,31 @@ namespace CustomRenderer.iOS
             }
         }
 
-		protected override void Dispose(bool disposing)
-		{
+        protected override void Dispose(bool disposing)
+        {
             base.Dispose(disposing);
 
             mPdfViewCtrl?.CloseDoc();
             mPdfViewCtrl = null;
             mPdfDoc?.Close();
             mPdfDoc = null;
-		}
+        }
 
-		public override void WillRotate(UIInterfaceOrientation toInterfaceOrientation, double duration)
-		{
+        public override void WillRotate(UIInterfaceOrientation toInterfaceOrientation, double duration)
+        {
             base.WillRotate(toInterfaceOrientation, duration);
 
             mAnnotationToolbar?.RotateToOrientation(toInterfaceOrientation);
-		}
+        }
 
-		public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
-		{
+        public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
+        {
             base.DidRotate(fromInterfaceOrientation);
 
             mAnnotationToolbar?.RotateToOrientation(UIApplication.SharedApplication.StatusBarOrientation);
-		}
+        }
 
-		void SetupUserInterface()
+        void SetupUserInterface()
         {
             CGRect viewRect = new CGRect(0, 0, View.Frame.Size.Width, View.Frame.Size.Height);
             mPdfViewCtrl = new pdftron.PDF.PDFViewCtrl(viewRect);
@@ -137,7 +137,7 @@ namespace CustomRenderer.iOS
             };
             mToolManager.ShouldShowMenu = (menuController, annotation, pageNumber, toolManager) =>
             {
-                if (mToolManager.Tool is pdftron.PDF.Tools.TextSelectTool) 
+                if (mToolManager.Tool is pdftron.PDF.Tools.TextSelectTool)
                 {
                     return true;
                 }
