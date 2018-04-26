@@ -13,3 +13,6 @@ To run the Android or iOS project, install the corresponding NuGet packages.
 To run the UWP project, please install the `PDFNetUWPApps.vsix` file inside the `/lib` folder from the download package.
 
 From the UWP download package, copy `/Samples/PDFViewCtrlTools_VS2015` folder to inside `ContentPage` folder. i.e. you will have `/ContentPage/PDFViewCtrlTools_VS2015` folder.
+
+Note:
+Please update to the latest version of Visual Studio 2017 and/or Visual Studio for Mac.
