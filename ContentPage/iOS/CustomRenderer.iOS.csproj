@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>i386, x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
@@ -88,13 +88,10 @@
       <HintPath>..\packages\Xamarin.Forms.2.5.1.444934\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="PDFNetiOS">
-      <HintPath>..\packages\PDFTron.iOS.6.8.0\lib\xamarinios10\PDFNetiOS.dll</HintPath>
+      <HintPath>..\packages\PDFTron.iOS.6.8.2\lib\xamarinios10\PDFNetiOS.dll</HintPath>
     </Reference>
     <Reference Include="Tools">
-      <HintPath>..\packages\PDFTron.iOS.Tools.6.8.0\lib\xamarinios10\Tools.dll</HintPath>
-    </Reference>
-    <Reference Include="Tools">
-      <HintPath>..\packages\PDFTron.iOS.Tools.6.8.0\lib\xamarinios10\Tools.dll</HintPath>
+      <HintPath>..\packages\PDFTron.iOS.Tools.6.8.2\lib\xamarinios10\Tools.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
