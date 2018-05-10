@@ -12,8 +12,8 @@ namespace CustomRenderer.Droid
         Icon = "@drawable/icon", MainLauncher = true,
         ConfigurationChanges = Android.Content.PM.ConfigChanges.ScreenSize | Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.KeyboardHidden,
         WindowSoftInputMode = SoftInput.AdjustPan,
-        Theme = "@style/AppTheme")]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
+        Theme = "@style/CustomAppTheme")]
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
 
@@ -33,7 +33,7 @@ namespace CustomRenderer.Droid
                 Console.WriteLine(e.GetMessage());
                 return;
             }
-
+            
             LoadApplication(new App());
         }
     }

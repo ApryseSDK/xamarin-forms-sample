@@ -1,7 +1,7 @@
 ﻿<resources>
 
   <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <!-- Customize your theme here. -->
     <item name="colorPrimary">#3F51B5</item>
     <item name="colorPrimaryDark">#303F9F</item>
@@ -9,6 +9,7 @@
   </style>
 
   <style name="CustomAppTheme" parent="AppTheme">
+    <item name="actionMenuTextColor">@android:color/white</item>
     <item name="actionModeBackground">?attr/colorPrimary</item>
     <item name="windowActionModeOverlay">true</item>
   </style>
