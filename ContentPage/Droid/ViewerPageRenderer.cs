@@ -68,7 +68,12 @@ namespace CustomRenderer.Droid
             var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
             mPdfDoc = mPdfViewCtrl.OpenPDFUri(Android.Net.Uri.FromFile(file), "");
 
-            mToolManager = ToolManagerBuilder.From().Build(mPdfViewCtrl);
+            Android.Support.V4.App.FragmentActivity fragmentActivity = null;
+            if (activity is Android.Support.V4.App.FragmentActivity)
+            {
+                fragmentActivity = activity as Android.Support.V4.App.FragmentActivity;
+            }
+            mToolManager = ToolManagerBuilder.From().Build(fragmentActivity, mPdfViewCtrl);
 
             mAnnotationToolbar = view.FindViewById<AnnotationToolbar>(Resource.Id.annotationtoolbar);
             mAnnotationToolbar.FindViewById(Resource.Id.controls_annotation_toolbar_btn_close).Visibility = ViewStates.Gone;
