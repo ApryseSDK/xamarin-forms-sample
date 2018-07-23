@@ -53,18 +53,21 @@ namespace CustomRenderer.iOS
             mPdfDoc = null;
         }
 
-        public override void WillRotate(UIInterfaceOrientation toInterfaceOrientation, double duration)
+        public override void ViewWillTransitionToSize(CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
         {
-            base.WillRotate(toInterfaceOrientation, duration);
+            base.ViewWillTransitionToSize(toSize, coordinator);
 
-            mAnnotationToolbar?.RotateToOrientation(toInterfaceOrientation);
-        }
+            coordinator.AnimateAlongsideTransition((obj) =>
+            {
+                var orientation = UIDevice.CurrentDevice.Orientation;
+                if (mAnnotationToolbar != null)
+                {
+                    mAnnotationToolbar.RotateToOrientation(orientation);
+                }
+            }, (obj) =>
+            {
 
-        public override void DidRotate(UIInterfaceOrientation fromInterfaceOrientation)
-        {
-            base.DidRotate(fromInterfaceOrientation);
-
-            mAnnotationToolbar?.RotateToOrientation(UIApplication.SharedApplication.StatusBarOrientation);
+            });
         }
 
         void SetupUserInterface()

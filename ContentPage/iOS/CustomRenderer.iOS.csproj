@@ -88,10 +88,10 @@
       <HintPath>..\packages\Xamarin.Forms.2.5.1.444934\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="PDFNetiOS">
-      <HintPath>..\packages\PDFTron.iOS.6.8.2\lib\xamarinios10\PDFNetiOS.dll</HintPath>
+      <HintPath>..\packages\PDFTron.iOS.6.8.5\lib\xamarinios10\PDFNetiOS.dll</HintPath>
     </Reference>
     <Reference Include="Tools">
-      <HintPath>..\packages\PDFTron.iOS.Tools.6.8.2\lib\xamarinios10\Tools.dll</HintPath>
+      <HintPath>..\packages\PDFTron.iOS.Tools.6.8.5\lib\xamarinios10\Tools.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
