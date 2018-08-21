@@ -95,6 +95,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Common\Key.cs">
+      <Link>Key.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -140,7 +143,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="PDFTron.PDFNetUWPApps, Version=6.7.1.53090">
+    <SDKReference Include="PDFTron.PDFNetUWPApps, Version=6.8.2.65365">
       <Name>PDFNet SDK for UWP</Name>
     </SDKReference>
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
