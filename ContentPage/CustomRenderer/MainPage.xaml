@@ -5,7 +5,8 @@
 			 Title="Main Page">
 	<ContentPage.Content>
         <StackLayout>
-            <Button x:Name="openViewerButton" Text="Open Viewer" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Clicked="OnOpenViewerButtonClicked" />
+            <Button x:Name="openViewerButton" Text="Open Viewer" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnOpenViewerButtonClicked" />
+            <Button x:Name="openAdvancedViewerButton" Text="Open Advanced Viewer" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnOpenAdvancedViewerButtonClicked" />
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

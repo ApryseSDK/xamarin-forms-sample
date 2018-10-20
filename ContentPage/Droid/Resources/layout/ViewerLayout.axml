@@ -11,7 +11,7 @@
         <pdftron.PDF.Controls.AnnotationToolbar
             android:id="@+id/annotationtoolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:elevation="@dimen/actionbar_elevation" />
         <pdftron.PDF.PDFViewCtrl
             android:id="@+id/pdfviewctrl"

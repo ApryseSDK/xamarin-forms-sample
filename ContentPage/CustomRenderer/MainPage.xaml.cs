@@ -14,6 +14,11 @@ namespace CustomRenderer
 		{
             await Navigation.PushAsync(new ViewerPage());
         }
-	}
+
+        async void OnOpenAdvancedViewerButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AdvancedViewerPage());
+        }
+    }
 }
 
