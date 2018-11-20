@@ -113,7 +113,11 @@ namespace CustomRenderer.Droid
 
             if (mAnnotationToolbar != null && mAnnotationToolbar.IsShowing)
             {
-                mAnnotationToolbar.OnConfigurationChanged(newConfig);
+                // workaround Xamarin.Forms issue on rotation
+                PostDelayed(() => {
+                    mAnnotationToolbar.OnConfigurationChanged(newConfig);
+                }, 0);
+                
             }
         }
 
