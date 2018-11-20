@@ -76,9 +76,9 @@ namespace CustomRenderer.Droid
             mToolManager = ToolManagerBuilder.From().Build(fragmentActivity, mPdfViewCtrl);
 
             mAnnotationToolbar = view.FindViewById<AnnotationToolbar>(Resource.Id.annotationtoolbar);
-            mAnnotationToolbar.FindViewById(Resource.Id.controls_annotation_toolbar_btn_close).Visibility = ViewStates.Gone;
             mAnnotationToolbar.Setup(mToolManager);
             mAnnotationToolbar.SetButtonStayDown(true);
+            mAnnotationToolbar.HideButton(AnnotationToolbarButtonId.Close);
             mAnnotationToolbar.Show();
 
             mSeekBar = view.FindViewById<ThumbnailSlider>(Resource.Id.thumbseekbar);
