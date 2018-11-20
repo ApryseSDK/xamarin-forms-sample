@@ -138,14 +138,6 @@ namespace CustomRenderer.iOS
             {
                 mAnnotationToolbar?.SetButtonForTool(mToolManager.Tool);
             };
-            mToolManager.ShouldShowMenu = (menuController, annotation, pageNumber, toolManager) =>
-            {
-                if (mToolManager.Tool is pdftron.PDF.Tools.TextSelectTool)
-                {
-                    return true;
-                }
-                return false;
-            };
 
             mAnnotationToolbar.AnnotationToolbarDidCancel += (sender, e) =>
             {
