@@ -84,7 +84,7 @@ namespace CustomRenderer.Droid
 
         void SetupEventHandlers()
         {
-            mDocumentView.OnNavButtonPressed += DocumentView_OnNavButtonPressed;
+            mDocumentView.NavigationButtonPressed += DocumentView_OnNavButtonPressed;
         }
 
         async void DocumentView_OnNavButtonPressed(object sender, EventArgs e)
@@ -119,11 +119,15 @@ namespace CustomRenderer.Droid
 
         private ViewerConfig GetConfig()
         {
+            var toolmanagerBuilder = ToolManagerBuilder.From()
+                .DisableToolModes(new ToolManager.ToolMode[] { ToolManager.ToolMode.Stamper })
+                .SetAutoSelect(true);
             var builder = new ViewerConfig.Builder();
             var config = builder
                 .MultiTabEnabled(true)
                 .FullscreenModeEnabled(false)
                 .UseSupportActionBar(false)
+                .ToolManagerBuilder(toolmanagerBuilder)
                 .Build();
             return config;
         }
