@@ -19,9 +19,9 @@ namespace CustomRenderer.iOS
     {
         private PDFViewCtrl mPdfViewCtrl;
         private PDFDoc mPdfDoc;
-        private ToolManager mToolManager;
-        private AnnotationToolbar mAnnotationToolbar;
-        private ThumbnailSliderViewController mThumbnailSliderViewController;
+        private PTToolManager mToolManager;
+        private PTAnnotationToolbar mAnnotationToolbar;
+        private PTThumbnailSliderViewController mThumbnailSliderViewController;
 
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
         {
@@ -92,10 +92,10 @@ namespace CustomRenderer.iOS
             mPdfViewCtrl.PagePresentationMode = PagePresentationModes.e_single_page;
             mPdfViewCtrl.SetHighlightFields(true);
 
-            mToolManager = new ToolManager(mPdfViewCtrl);
+            mToolManager = new PTToolManager(mPdfViewCtrl);
             mPdfViewCtrl.ToolManager = mToolManager;
 
-            mAnnotationToolbar = new AnnotationToolbar(mToolManager);
+            mAnnotationToolbar = new PTAnnotationToolbar(mToolManager);
             View.AddSubview(mAnnotationToolbar);
 
             mAnnotationToolbar.TranslatesAutoresizingMaskIntoConstraints = false;
@@ -105,16 +105,23 @@ namespace CustomRenderer.iOS
                 mAnnotationToolbar.TopAnchor.ConstraintEqualTo(this.View.LayoutMarginsGuide.TopAnchor)
             });
 
-            mThumbnailSliderViewController = new ThumbnailSliderViewController(mPdfViewCtrl);
+            mThumbnailSliderViewController = new PTThumbnailSliderViewController(mPdfViewCtrl);
             mThumbnailSliderViewController.View.TranslatesAutoresizingMaskIntoConstraints = false;
 
             AddChildViewController(mThumbnailSliderViewController);
             View.AddSubview(mThumbnailSliderViewController.View);
 
+            bool isIOS11 = UIDevice.CurrentDevice.CheckSystemVersion(11, 0);
+            var bottomAnchor = this.View.BottomAnchor;
+            if (isIOS11)
+            {
+                bottomAnchor = this.View.SafeAreaLayoutGuide.BottomAnchor;
+            }
+
             NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[] {
                 mThumbnailSliderViewController.View.LeadingAnchor.ConstraintEqualTo(this.View.LeadingAnchor),
                 mThumbnailSliderViewController.View.WidthAnchor.ConstraintEqualTo(this.View.WidthAnchor),
-                mThumbnailSliderViewController.View.BottomAnchor.ConstraintEqualTo(this.View.BottomAnchor)
+                mThumbnailSliderViewController.View.BottomAnchor.ConstraintEqualTo(bottomAnchor)
             });
             mThumbnailSliderViewController.DidMoveToParentViewController(this);
         }

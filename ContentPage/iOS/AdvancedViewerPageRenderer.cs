@@ -47,6 +47,7 @@ namespace CustomRenderer.iOS
         void SetupUserInterface()
         {
             mTabViewController = new PTTabbedDocumentViewController();
+            mTabViewController.TabsEnabled = false;
             UINavigationController navigationController = new UINavigationController(mTabViewController);
 
             AddChildViewController(navigationController);
