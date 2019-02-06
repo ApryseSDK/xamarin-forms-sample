@@ -9,3 +9,7 @@
 bin
 obj
 /ContentPage/Droid/debug_keystore
+.DS_Store
+ContentPage/.DS_Store
+ContentPage/Droid/.DS_Store
+ContentPage/iOS/.DS_Store
