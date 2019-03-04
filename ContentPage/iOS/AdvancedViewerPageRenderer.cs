@@ -57,12 +57,7 @@ namespace CustomRenderer.iOS
             navigationController.DidMoveToParentViewController(this);
 
             NSUrl fileURL = NSBundle.MainBundle.GetUrlForResource("sample", "pdf");
-            NSError error = null;
-            bool success = mTabViewController.OpenDocumentWithURL(fileURL, out error);
-            if (!success)
-            {
-                Console.WriteLine("OpenDocumentWithURL failed...");
-            }
+            mTabViewController.OpenDocumentWithURL(fileURL);
         }
 
         void SetupEventHandlers()
