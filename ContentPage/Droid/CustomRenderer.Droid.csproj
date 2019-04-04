@@ -48,6 +48,10 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
   </PropertyGroup>
+  <PropertyGroup>
+    <DxExtraArguments>--dex --no-strict --force-jumbo</DxExtraArguments>
+    <AndroidMultiDexClassListExtraArgs>--disable-annotation-resolution-workaround</AndroidMultiDexClassListExtraArgs>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FloatingActionButton">
       <HintPath>..\packages\PDFTron.Android.FAB.1.0.0\lib\monoandroid80\FloatingActionButton.dll</HintPath>

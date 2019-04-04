@@ -128,6 +128,7 @@ namespace CustomRenderer.Droid
                 .FullscreenModeEnabled(false)
                 .UseSupportActionBar(false)
                 .ToolManagerBuilder(toolmanagerBuilder)
+                .SaveCopyExportPath(this.Context.FilesDir.AbsolutePath)
                 .Build();
             return config;
         }
