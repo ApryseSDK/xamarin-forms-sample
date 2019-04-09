@@ -74,6 +74,11 @@ namespace CustomRenderer.Droid
                 fragmentActivity = activity as Android.Support.V4.App.FragmentActivity;
             }
             mToolManager = ToolManagerBuilder.From().Build(fragmentActivity, mPdfViewCtrl);
+            mToolManager.SetCanOpenEditToolbarFromPan(true);
+            mToolManager.OpenEditToolbar += (sender, e) =>
+            {
+                mAnnotationToolbar.Show(AnnotationToolbar.StartModeEditToolbar, null, e.Mode, !mAnnotationToolbar.IsShowing);
+            };
 
             mAnnotationToolbar = view.FindViewById<AnnotationToolbar>(Resource.Id.annotationtoolbar);
             mAnnotationToolbar.Setup(mToolManager);
