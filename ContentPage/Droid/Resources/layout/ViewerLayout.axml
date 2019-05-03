@@ -25,5 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+		app:leftMenuItemDrawable="@null"
+		app:rightMenuItemDrawable="@null"
         app:pdfviewctrlId="@id/pdfviewctrl" />
 </RelativeLayout>
