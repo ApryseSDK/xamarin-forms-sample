@@ -120,7 +120,6 @@ namespace CustomRenderer.Droid
         private ViewerConfig GetConfig()
         {
             var toolmanagerBuilder = ToolManagerBuilder.From()
-                .DisableToolModes(new ToolManager.ToolMode[] { ToolManager.ToolMode.Stamper })
                 .SetAutoSelect(true);
             var builder = new ViewerConfig.Builder();
             var config = builder
