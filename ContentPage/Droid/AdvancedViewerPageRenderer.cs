@@ -103,14 +103,6 @@ namespace CustomRenderer.Droid
             view.Layout(0, 0, r - l, b - t);
         }
 
-        private Android.OS.Bundle GetBundle()
-        {
-            var config = GetConfig();
-            var args = PdfViewCtrlTabFragment.CreateBasicPdfViewCtrlTabBundle(this.Context, GetFile(), "", config);
-            args.PutParcelable(PdfViewCtrlTabHostFragment.BundleTabHostConfig, config);
-            return args;
-        }
-
         private Android.Net.Uri GetFile()
         {
             var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
