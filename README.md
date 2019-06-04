@@ -8,6 +8,8 @@ To run this sample, you will first need to request a demo license key [here](htt
 
 Then, put your demo key in `/Common/Key.cs`.
 
+Note: for v6.10.+, demo key is not required.
+
 To run the Android or iOS project, open the solution in Visual Studio and restore all the NuGet packages.
 
 To run the UWP project, please install the `PDFNetUWPApps.vsix` file inside the `/lib` folder from the download package.
