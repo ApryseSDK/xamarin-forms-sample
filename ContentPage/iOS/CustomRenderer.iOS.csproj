@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Xamarin.Forms.3.5.0.169047\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.3.5.0.169047\build\Xamarin.Forms.props')" />
   <PropertyGroup>
@@ -76,10 +76,10 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="PDFNetiOS">
-      <HintPath>packages\PDFTron.iOS.6.10.2\lib\xamarinios10\PDFNetiOS.dll</HintPath>
+      <HintPath>..\packages\PDFTron.iOS.6.10.4\lib\xamarinios10\PDFNetiOS.dll</HintPath>
     </Reference>
     <Reference Include="Tools">
-      <HintPath>packages\PDFTron.iOS.Tools.6.10.2\lib\xamarinios10\Tools.dll</HintPath>
+      <HintPath>..\packages\PDFTron.iOS.Tools.6.10.4\lib\xamarinios10\Tools.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.3.5.0.169047\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
