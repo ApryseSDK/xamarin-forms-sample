@@ -10279,8 +10279,8 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b00a3
 			public const int annotation_could_not_be_added_dialog_msg = 2131427491;
 			
-			// aapt resource value: 0x7f0b02d4
-			public const int app_name = 2131428052;
+			// aapt resource value: 0x7f0b02d5
+			public const int app_name = 2131428053;
 			
 			// aapt resource value: 0x7f0b0040
 			public const int appbar_scrolling_view_behavior = 2131427392;
@@ -11548,6 +11548,9 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b0200
 			public const int tools_dialog_annotation_popup_note_hint = 2131427840;
 			
+			// aapt resource value: 0x7f0b02b3
+			public const int tools_dialog_annotation_popup_readonly_hint = 2131428019;
+			
 			// aapt resource value: 0x7f0b0201
 			public const int tools_dialog_annotation_popup_text_hint = 2131427841;
 			
@@ -11731,11 +11734,11 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b023d
 			public const int tools_misc_skip = 2131427901;
 			
-			// aapt resource value: 0x7f0b02b3
-			public const int tools_misc_textsize = 2131428019;
-			
 			// aapt resource value: 0x7f0b02b4
-			public const int tools_misc_thickness = 2131428020;
+			public const int tools_misc_textsize = 2131428020;
+			
+			// aapt resource value: 0x7f0b02b5
+			public const int tools_misc_thickness = 2131428021;
 			
 			// aapt resource value: 0x7f0b023e
 			public const int tools_misc_yes = 2131427902;
@@ -11743,8 +11746,8 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b023f
 			public const int tools_paste_annot_waiting = 2131427903;
 			
-			// aapt resource value: 0x7f0b02b5
-			public const int tools_point_snap = 2131428021;
+			// aapt resource value: 0x7f0b02b6
+			public const int tools_point_snap = 2131428022;
 			
 			// aapt resource value: 0x7f0b0240
 			public const int tools_qm_add_note = 2131427904;
@@ -11752,8 +11755,8 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b0241
 			public const int tools_qm_appearance = 2131427905;
 			
-			// aapt resource value: 0x7f0b02b6
-			public const int tools_qm_arrow = 2131428022;
+			// aapt resource value: 0x7f0b02b7
+			public const int tools_qm_arrow = 2131428023;
 			
 			// aapt resource value: 0x7f0b0242
 			public const int tools_qm_attach = 2131427906;
@@ -11764,14 +11767,14 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b0244
 			public const int tools_qm_back = 2131427908;
 			
-			// aapt resource value: 0x7f0b02b7
-			public const int tools_qm_calibrate = 2131428023;
-			
 			// aapt resource value: 0x7f0b02b8
-			public const int tools_qm_callout = 2131428024;
+			public const int tools_qm_calibrate = 2131428024;
 			
 			// aapt resource value: 0x7f0b02b9
-			public const int tools_qm_cloud = 2131428025;
+			public const int tools_qm_callout = 2131428025;
+			
+			// aapt resource value: 0x7f0b02ba
+			public const int tools_qm_cloud = 2131428026;
 			
 			// aapt resource value: 0x7f0b0245
 			public const int tools_qm_color = 2131427909;
@@ -11791,8 +11794,8 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b024a
 			public const int tools_qm_edit = 2131427914;
 			
-			// aapt resource value: 0x7f0b02ba
-			public const int tools_qm_ellipse = 2131428026;
+			// aapt resource value: 0x7f0b02bb
+			public const int tools_qm_ellipse = 2131428027;
 			
 			// aapt resource value: 0x7f0b024b
 			public const int tools_qm_eraser = 2131427915;
@@ -11821,20 +11824,20 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b0253
 			public const int tools_qm_form_text = 2131427923;
 			
-			// aapt resource value: 0x7f0b02bb
-			public const int tools_qm_free_text = 2131428027;
+			// aapt resource value: 0x7f0b02bc
+			public const int tools_qm_free_text = 2131428028;
 			
 			// aapt resource value: 0x7f0b0254
 			public const int tools_qm_group_select = 2131427924;
 			
-			// aapt resource value: 0x7f0b02bc
-			public const int tools_qm_highlight = 2131428028;
-			
 			// aapt resource value: 0x7f0b02bd
-			public const int tools_qm_line = 2131428029;
+			public const int tools_qm_highlight = 2131428029;
 			
 			// aapt resource value: 0x7f0b02be
-			public const int tools_qm_link = 2131428030;
+			public const int tools_qm_line = 2131428030;
+			
+			// aapt resource value: 0x7f0b02bf
+			public const int tools_qm_link = 2131428031;
 			
 			// aapt resource value: 0x7f0b0255
 			public const int tools_qm_measurement = 2131427925;
@@ -11860,20 +11863,20 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b025c
 			public const int tools_qm_play_sound = 2131427932;
 			
-			// aapt resource value: 0x7f0b02bf
-			public const int tools_qm_polygon = 2131428031;
-			
 			// aapt resource value: 0x7f0b02c0
-			public const int tools_qm_polyline = 2131428032;
+			public const int tools_qm_polygon = 2131428032;
 			
 			// aapt resource value: 0x7f0b02c1
-			public const int tools_qm_rectangle = 2131428033;
+			public const int tools_qm_polyline = 2131428033;
 			
 			// aapt resource value: 0x7f0b02c2
-			public const int tools_qm_redact = 2131428034;
+			public const int tools_qm_rectangle = 2131428034;
 			
 			// aapt resource value: 0x7f0b02c3
-			public const int tools_qm_redaction = 2131428035;
+			public const int tools_qm_redact = 2131428035;
+			
+			// aapt resource value: 0x7f0b02c4
+			public const int tools_qm_redaction = 2131428036;
 			
 			// aapt resource value: 0x7f0b025d
 			public const int tools_qm_reply = 2131427933;
@@ -11881,11 +11884,11 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b025e
 			public const int tools_qm_rotate = 2131427934;
 			
-			// aapt resource value: 0x7f0b02c4
-			public const int tools_qm_rubber_stamp = 2131428036;
-			
 			// aapt resource value: 0x7f0b02c5
-			public const int tools_qm_ruler = 2131428037;
+			public const int tools_qm_rubber_stamp = 2131428037;
+			
+			// aapt resource value: 0x7f0b02c6
+			public const int tools_qm_ruler = 2131428038;
 			
 			// aapt resource value: 0x7f0b025f
 			public const int tools_qm_shape = 2131427935;
@@ -11893,20 +11896,20 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b0260
 			public const int tools_qm_sign_and_save = 2131427936;
 			
-			// aapt resource value: 0x7f0b02c6
-			public const int tools_qm_signature = 2131428038;
+			// aapt resource value: 0x7f0b02c7
+			public const int tools_qm_signature = 2131428039;
 			
 			// aapt resource value: 0x7f0b0261
 			public const int tools_qm_sound = 2131427937;
 			
-			// aapt resource value: 0x7f0b02c7
-			public const int tools_qm_squiggly = 2131428039;
+			// aapt resource value: 0x7f0b02c8
+			public const int tools_qm_squiggly = 2131428040;
 			
 			// aapt resource value: 0x7f0b0262
 			public const int tools_qm_stamper = 2131427938;
 			
-			// aapt resource value: 0x7f0b02c8
-			public const int tools_qm_strikeout = 2131428040;
+			// aapt resource value: 0x7f0b02c9
+			public const int tools_qm_strikeout = 2131428041;
 			
 			// aapt resource value: 0x7f0b0263
 			public const int tools_qm_stroke_color = 2131427939;
@@ -11926,8 +11929,8 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b0268
 			public const int tools_qm_translate = 2131427944;
 			
-			// aapt resource value: 0x7f0b02c9
-			public const int tools_qm_underline = 2131428041;
+			// aapt resource value: 0x7f0b02ca
+			public const int tools_qm_underline = 2131428042;
 			
 			// aapt resource value: 0x7f0b0269
 			public const int tools_qm_use_saved_sig = 2131427945;
@@ -12004,35 +12007,35 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7f0b0281
 			public const int undo_redo_redaction = 2131427969;
 			
-			// aapt resource value: 0x7f0b02ca
-			public const int unit_cm = 2131428042;
-			
 			// aapt resource value: 0x7f0b02cb
-			public const int unit_ft = 2131428043;
+			public const int unit_cm = 2131428043;
 			
 			// aapt resource value: 0x7f0b02cc
-			public const int unit_in = 2131428044;
+			public const int unit_ft = 2131428044;
 			
 			// aapt resource value: 0x7f0b02cd
-			public const int unit_km = 2131428045;
+			public const int unit_in = 2131428045;
 			
 			// aapt resource value: 0x7f0b02ce
-			public const int unit_m = 2131428046;
+			public const int unit_km = 2131428046;
 			
 			// aapt resource value: 0x7f0b02cf
-			public const int unit_mi = 2131428047;
+			public const int unit_m = 2131428047;
 			
 			// aapt resource value: 0x7f0b02d0
-			public const int unit_mm = 2131428048;
+			public const int unit_mi = 2131428048;
 			
 			// aapt resource value: 0x7f0b02d1
-			public const int unit_percent = 2131428049;
+			public const int unit_mm = 2131428049;
 			
 			// aapt resource value: 0x7f0b02d2
-			public const int unit_pt = 2131428050;
+			public const int unit_percent = 2131428050;
 			
 			// aapt resource value: 0x7f0b02d3
-			public const int unit_yd = 2131428051;
+			public const int unit_pt = 2131428051;
+			
+			// aapt resource value: 0x7f0b02d4
+			public const int unit_yd = 2131428052;
 			
 			// aapt resource value: 0x7f0b0282
 			public const int user_crop_auto_crop_progress = 2131427970;
