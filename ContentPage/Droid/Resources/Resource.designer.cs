@@ -9871,25 +9871,28 @@ namespace CustomRenderer.Droid
 		{
 			
 			// aapt resource value: 0x7f080000
-			public const int pdfnet = 2131230720;
+			public const int office = 2131230720;
 			
 			// aapt resource value: 0x7f080001
-			public const int pdftron_layout_resources = 2131230721;
+			public const int pdfnet = 2131230721;
 			
 			// aapt resource value: 0x7f080002
-			public const int pdftron_smart_substitution = 2131230722;
+			public const int pdftron_layout_resources = 2131230722;
 			
 			// aapt resource value: 0x7f080003
-			public const int sample = 2131230723;
+			public const int pdftron_smart_substitution = 2131230723;
 			
 			// aapt resource value: 0x7f080004
-			public const int sepia_mode_filter = 2131230724;
+			public const int sample = 2131230724;
 			
 			// aapt resource value: 0x7f080005
-			public const int stamps_icons = 2131230725;
+			public const int sepia_mode_filter = 2131230725;
 			
 			// aapt resource value: 0x7f080006
-			public const int stickynote_icons = 2131230726;
+			public const int stamps_icons = 2131230726;
+			
+			// aapt resource value: 0x7f080007
+			public const int stickynote_icons = 2131230727;
 			
 			static Raw()
 			{

@@ -65,8 +65,16 @@ namespace CustomRenderer.Droid
             mPdfViewCtrl = view.FindViewById<pdftron.PDF.PDFViewCtrl>(Resource.Id.pdfviewctrl);
             AppUtils.SetupPDFViewCtrl(mPdfViewCtrl, PDFViewCtrlConfig.GetDefaultConfig(this.Context));
 
-            var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
-            mPdfDoc = mPdfViewCtrl.OpenPDFUri(Android.Net.Uri.FromFile(file), "");
+            var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.office, "office", ".docx");
+
+            // Conversion using Convert class, then set the converted doc
+            var documentConversion = pdftron.PDF.Convert.StreamingPDFConversion(file.AbsolutePath, null);
+            documentConversion.Convert();
+            var pdfDoc = documentConversion.GetDoc();
+            mPdfViewCtrl.SetDoc(pdfDoc);
+
+            // Alternatively call ...
+            //mPdfViewCtrl.OpenNonPDFUri(Android.Net.Uri.FromFile(file), null);
 
             Android.Support.V4.App.FragmentActivity fragmentActivity = null;
             if (activity is Android.Support.V4.App.FragmentActivity)
