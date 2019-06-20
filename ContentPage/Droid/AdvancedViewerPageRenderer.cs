@@ -120,7 +120,12 @@ namespace CustomRenderer.Droid
                 .UseSupportActionBar(false)
                 .ToolManagerBuilder(toolmanagerBuilder)
                 .SaveCopyExportPath(this.Context.FilesDir.AbsolutePath)
+                // Use local cache for open URL. If using external storage, 
+                // permissions will have to be handled manually
                 .OpenUrlCachePath(this.Context.CacheDir.AbsolutePath)
+                // Additionally, you can restrict download usage to only 
+                // download parts of a linearized PDF via URL
+                // .RestrictDownloadUsage(true)
                 .Build();
             return config;
         }
