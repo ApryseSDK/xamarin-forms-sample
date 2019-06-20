@@ -105,8 +105,8 @@ namespace CustomRenderer.Droid
 
         private Android.Net.Uri GetFile()
         {
-            var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
-            return Android.Net.Uri.FromFile(file);
+            // var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
+            return Android.Net.Uri.Parse("https://s3.amazonaws.com/pdftron/files/pdf/linearization/5mb-linearized.pdf");
         }
 
         private ViewerConfig GetConfig()
@@ -120,6 +120,7 @@ namespace CustomRenderer.Droid
                 .UseSupportActionBar(false)
                 .ToolManagerBuilder(toolmanagerBuilder)
                 .SaveCopyExportPath(this.Context.FilesDir.AbsolutePath)
+                .OpenUrlCachePath(this.Context.CacheDir.AbsolutePath)
                 .Build();
             return config;
         }
