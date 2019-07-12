@@ -42,6 +42,23 @@ namespace CustomRenderer.iOS
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+
+            PTTabbedDocumentViewController tabbedDocumentViewController = mTabViewController;
+            mTabViewController = null;
+
+            nuint index = tabbedDocumentViewController.SelectedIndex;
+            PTDocumentViewController documentViewController = tabbedDocumentViewController.SelectedViewController;
+            PDFDoc pdfDoc = TypeConvertHelper.ConvPdfDocToManaged(documentViewController.PdfViewCtrl.GetDoc());
+
+            documentViewController.CloseDocumentWithCompletionHandler((bool success) => {
+                pdfDoc.Close();
+                pdfDoc = null;
+            });
+
+            tabbedDocumentViewController.RemoveTabAtIndex(index);
+            tabbedDocumentViewController = null;
+
+            GC.Collect();
         }
 
         void SetupUserInterface()
@@ -63,6 +80,9 @@ namespace CustomRenderer.iOS
         void SetupEventHandlers()
         {
             mTabViewController.WillRemoveTabAtIndex += (sender, e) => {
+                if (mTabViewController == null) {
+                    return;
+                }
                 if (((PTTabbedDocumentViewController)sender).TabURLs.Length > 1)
                 {
                     return;
