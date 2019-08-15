@@ -12,3 +12,4 @@ From the UWP download package, copy `/Samples/PDFViewCtrlTools_VS2015` folder to
 
 Note:
 Please update to the latest version of Visual Studio 2017 and/or Visual Studio for Mac.
+![](https://onepixel.pdftron.com/xamarin-forms-sample)
