@@ -32,6 +32,7 @@ namespace CustomRenderer.iOS
             {
                 SetupUserInterface();
                 SetupEventHandlers();
+                OpenDocument();
             }
             catch (Exception ex)
             {
@@ -72,9 +73,6 @@ namespace CustomRenderer.iOS
             View.AddSubview(navigationController.View);
 
             navigationController.DidMoveToParentViewController(this);
-
-            NSUrl fileURL = NSBundle.MainBundle.GetUrlForResource("sample", "pdf");
-            mTabViewController.OpenDocumentWithURL(fileURL);
         }
 
         void SetupEventHandlers()
@@ -93,6 +91,12 @@ namespace CustomRenderer.iOS
             mTabViewController.NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Done, (sender, e) => {
                 OnNavButtonPressed();
             });
+        }
+
+        void OpenDocument()
+        {
+            NSUrl fileURL = NSBundle.MainBundle.GetUrlForResource("sample", "pdf");
+            mTabViewController.OpenDocumentWithURL(fileURL);
         }
 
         async void OnNavButtonPressed() 
