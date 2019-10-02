@@ -77,7 +77,7 @@ namespace CustomRenderer.Droid
             mToolManager.SetCanOpenEditToolbarFromPan(true);
             mToolManager.OpenEditToolbar += (sender, e) =>
             {
-                mAnnotationToolbar.Show(AnnotationToolbar.StartModeEditToolbar, null, e.Mode, !mAnnotationToolbar.IsShowing);
+                mAnnotationToolbar.Show(AnnotationToolbar.StartModeEditToolbar, null, 0, e.Mode, !mAnnotationToolbar.IsShowing);
             };
 
             mAnnotationToolbar = view.FindViewById<AnnotationToolbar>(Resource.Id.annotationtoolbar);
