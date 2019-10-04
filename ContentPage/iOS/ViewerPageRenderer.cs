@@ -134,11 +134,11 @@ namespace CustomRenderer.iOS
                 {
                     return;
                 }
-                this.mThumbnailSliderViewController?.SetThumbnail(e.Image, e.Page_num);
+                //this.mThumbnailSliderViewController?.SetThumbnail(e.Image, e.Page_num);
             };
             mPdfViewCtrl.PageNumberChangedFrom += (sender, e) =>
             {
-                mThumbnailSliderViewController?.SetSliderValue(e.NewPageNumber);
+                //mThumbnailSliderViewController?.SetSliderValue(e.NewPageNumber);
             };
 
             mToolManager.ToolManagerToolChanged += (sender, e) =>
