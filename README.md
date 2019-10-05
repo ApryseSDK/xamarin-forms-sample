@@ -11,5 +11,5 @@ To run the UWP project, please install the `PDFNetUWPApps.vsix` file inside the 
 From the UWP download package, copy `/Samples/PDFViewCtrlTools_VS2015` folder to inside `ContentPage` folder. i.e. you will have `/ContentPage/PDFViewCtrlTools_VS2015` folder.
 
 Note:
-Please update to the latest version of Visual Studio 2017 and/or Visual Studio for Mac.
+Please update to the latest version of Visual Studio 2019 and/or Visual Studio for Mac.
 ![](https://onepixel.pdftron.com/xamarin-forms-sample)
