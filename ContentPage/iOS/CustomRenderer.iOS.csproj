@@ -76,10 +76,10 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="PDFNetiOS">
-      <HintPath>..\packages\PDFTron.iOS.7.0.2\lib\xamarinios10\PDFNetiOS.dll</HintPath>
+      <HintPath>..\packages\PDFTron.iOS.7.0.3\lib\xamarinios10\PDFNetiOS.dll</HintPath>
     </Reference>
     <Reference Include="Tools">
-      <HintPath>..\packages\PDFTron.iOS.Tools.7.0.2\lib\xamarinios10\Tools.dll</HintPath>
+      <HintPath>..\packages\PDFTron.iOS.Tools.7.0.3\lib\xamarinios10\Tools.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.4.2.0.848062\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
