@@ -77,7 +77,7 @@ namespace CustomRenderer.Droid
                 }
                 if (childManager != null)
                 {
-                    mDocumentView.OpenDocument(GetFile(), "", GetConfig(), childManager);
+                    mDocumentView.OpenDocument(GetFile(), "", GetConfig(), childManager, new int[] { Resource.Menu.my_custom_options_toolbar });
                 }
             }
         }

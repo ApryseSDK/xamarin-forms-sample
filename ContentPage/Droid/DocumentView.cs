@@ -18,6 +18,8 @@ namespace CustomRenderer.Droid
 
         public event System.EventHandler NavigationButtonPressed;
 
+        private int[] mCustomToolbarRes;
+
         public DocumentView(Context context, IAttributeSet attrs) :
             base(context, attrs)
         {
@@ -34,12 +36,23 @@ namespace CustomRenderer.Droid
         {
         }
 
-        public void OpenDocument(Uri documentUri, string password, ViewerConfig config, FragmentManager manager)
+        public void OpenDocument(Uri documentUri, string password, ViewerConfig config, FragmentManager manager, int[] customToolbarRes)
         {
             base.SetDocumentUri(documentUri);
             base.SetPassword(password);
             base.SetViewerConfig(config);
             base.SetSupportFragmentManager(manager);
+
+            mCustomToolbarRes = customToolbarRes;
+        }
+
+        protected override void BuildViewer()
+        {
+            base.BuildViewer();
+            if (mCustomToolbarRes != null)
+            {
+                MViewerBuilder.UsingCustomToolbar(mCustomToolbarRes);
+            }
         }
 
         public override void OnNavButtonPressed()
@@ -69,6 +82,21 @@ namespace CustomRenderer.Droid
             base.OnLastTabClosed();
 
             NavigationButtonPressed?.Invoke(this, new System.EventArgs());
+        }
+
+        public override bool OnToolbarOptionsItemSelected(IMenuItem menuItem)
+        {
+            if (menuItem.ItemId == Resource.Id.action_show_toast)
+            {
+                Toast.MakeText(this.Context, "Show toast is clicked!", ToastLength.Short).Show();
+                return true;
+            }
+            else if (menuItem.ItemId == Resource.Id.action_star)
+            {
+                Toast.MakeText(this.Context, "Star is clicked!", ToastLength.Short).Show();
+                return true;
+            }
+            return base.OnToolbarOptionsItemSelected(menuItem);
         }
     }
 }
