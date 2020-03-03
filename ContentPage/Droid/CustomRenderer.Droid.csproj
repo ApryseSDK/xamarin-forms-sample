@@ -90,10 +90,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable\FlashButton.png" />
-    <AndroidResource Include="Resources\drawable\NoFlashButton.png" />
-    <AndroidResource Include="Resources\drawable\TakePhotoButton.png" />
-    <AndroidResource Include="Resources\drawable\ToggleCameraButton.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />

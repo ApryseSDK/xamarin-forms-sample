@@ -22,12 +22,11 @@
         <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
     </style>
     <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">#FF4081</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="CustomAppTheme" parent="MainTheme">
+    <style name="CustomAppTheme" parent="MainTheme.Base">
       <item name="actionMenuTextColor">@android:color/white</item>
       <item name="actionModeBackground">?attr/colorPrimary</item>
-      <item name="windowActionModeOverlay">true</item>
     </style>
 </resources>
