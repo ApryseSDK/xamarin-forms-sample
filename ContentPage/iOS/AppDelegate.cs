@@ -14,7 +14,7 @@ namespace CustomRenderer.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
 
-            pdftron.PDFNet.Initialize(pdftron.Demo.Key.LicenseKey);
+            pdftron.PDFNet.Initialize();
             Console.WriteLine(pdftron.PDFNet.GetVersion());
 
             LoadApplication (new App ());

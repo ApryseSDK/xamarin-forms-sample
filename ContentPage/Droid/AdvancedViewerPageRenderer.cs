@@ -17,8 +17,8 @@ using pdftron.PDF.Tools.Utils;
 using pdftron.PDF.Config;
 using Android.Content.Res;
 
-using FragmentActivity = Android.Support.V4.App.FragmentActivity;
-using FragmentManager = Android.Support.V4.App.FragmentManager;
+using FragmentActivity = AndroidX.Fragment.App.FragmentActivity;
+using FragmentManager = AndroidX.Fragment.App.FragmentManager;
 
 [assembly: ExportRenderer(typeof(AdvancedViewerPage), typeof(AdvancedViewerPageRenderer))]
 namespace CustomRenderer.Droid
