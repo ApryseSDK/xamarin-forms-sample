@@ -12,7 +12,7 @@ namespace CustomRenderer.Droid
         Icon = "@drawable/icon", MainLauncher = true,
         ConfigurationChanges = Android.Content.PM.ConfigChanges.ScreenSize | Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.KeyboardHidden,
         WindowSoftInputMode = SoftInput.AdjustPan,
-        Theme = "@style/CustomAppTheme")]
+        Theme = "@style/MainTheme")]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
@@ -25,7 +25,7 @@ namespace CustomRenderer.Droid
 
             try
             {
-                pdftron.PDF.Tools.Utils.AppUtils.InitializePDFNetApplication(this, pdftron.Demo.Key.LicenseKey);
+                pdftron.PDF.Tools.Utils.AppUtils.InitializePDFNetApplication(this);
                 Console.WriteLine(PDFNet.GetVersion());
             }
             catch (pdftron.Common.PDFNetException e)

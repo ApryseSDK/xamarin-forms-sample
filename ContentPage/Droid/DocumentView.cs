@@ -4,9 +4,7 @@ using Android.OS;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-
-using Android.Support.V4.App;
-
+using AndroidX.Fragment.App;
 using pdftron.PDF.Config;
 using pdftron.PDF.Controls;
 

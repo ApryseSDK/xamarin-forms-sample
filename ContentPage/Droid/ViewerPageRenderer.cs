@@ -16,6 +16,7 @@ using pdftron.PDF.Controls;
 using pdftron.PDF.Tools.Utils;
 using pdftron.PDF.Config;
 using Android.Content.Res;
+using AndroidX.Fragment.App;
 
 [assembly: ExportRenderer(typeof(ViewerPage), typeof(ViewerPageRenderer))]
 namespace CustomRenderer.Droid
@@ -68,10 +69,10 @@ namespace CustomRenderer.Droid
             var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
             mPdfDoc = mPdfViewCtrl.OpenPDFUri(Android.Net.Uri.FromFile(file), "");
 
-            Android.Support.V4.App.FragmentActivity fragmentActivity = null;
-            if (activity is Android.Support.V4.App.FragmentActivity)
+            FragmentActivity fragmentActivity = null;
+            if (activity is FragmentActivity)
             {
-                fragmentActivity = activity as Android.Support.V4.App.FragmentActivity;
+                fragmentActivity = activity as FragmentActivity;
             }
             mToolManager = ToolManagerBuilder.From().Build(fragmentActivity, mPdfViewCtrl);
             mToolManager.SetCanOpenEditToolbarFromPan(true);
