@@ -29,6 +29,8 @@ namespace CustomRenderer.Droid
 
         private DocumentView mDocumentView;
 
+        private bool mEventSetupDone;
+
         Activity activity;
 
         public AdvancedViewerPageRenderer(Context context) : base(context)
@@ -82,6 +84,20 @@ namespace CustomRenderer.Droid
             }
         }
 
+        private void TabHost_TabDocumentLoaded(object sender, PdfViewCtrlTabHostFragment.TabDocumentLoadedEventArgs e)
+        {
+            var tm = mDocumentView.MPdfViewCtrlTabHostFragment?.CurrentPdfViewCtrlFragment?.ToolManager;
+            if (tm != null)
+            {
+                tm.BookmarkModified += Tm_BookmarkModified;
+            }
+        }
+
+        private void Tm_BookmarkModified(object sender, EventArgs e)
+        {
+            Console.WriteLine("Bookmark Modified!");
+        }
+
         void SetupEventHandlers()
         {
             mDocumentView.NavigationButtonPressed += DocumentView_OnNavButtonPressed;
@@ -101,6 +117,16 @@ namespace CustomRenderer.Droid
 
             view.Measure(msw, msh);
             view.Layout(0, 0, r - l, b - t);
+
+            if (!mEventSetupDone)
+            {
+                mEventSetupDone = true;
+                var tabHost = mDocumentView.MPdfViewCtrlTabHostFragment;
+                if (tabHost != null)
+                {
+                    tabHost.TabDocumentLoaded += TabHost_TabDocumentLoaded;
+                }
+            }
         }
 
         private Android.Net.Uri GetFile()
