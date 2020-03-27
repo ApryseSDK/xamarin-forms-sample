@@ -90,6 +90,21 @@ namespace CustomRenderer.Droid
             if (tm != null)
             {
                 tm.BookmarkModified += Tm_BookmarkModified;
+                tm.AnnotationsModified += Tm_AnnotationsModified;
+            }
+        }
+
+        private void Tm_AnnotationsModified(object sender, ToolManager.AnnotationsModifiedEventArgs e)
+        {
+            foreach (var item in e.Annots)
+            {
+                var nativeAnnot = item.Key;
+                var annot = pdftron.PDF.TypeConvertHelper.ConvAnnotToManaged(nativeAnnot);
+                if (annot != null && annot.IsValid())
+                {
+                    pdftron.PDF.Annot.Type type = annot.GetType();
+                    Console.WriteLine("AnnotationsModified: type: " + type);
+                }
             }
         }
 
