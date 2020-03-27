@@ -96,6 +96,13 @@ namespace CustomRenderer.Droid
         private void Tm_BookmarkModified(object sender, EventArgs e)
         {
             Console.WriteLine("Bookmark Modified!");
+
+            var pdfDoc = mDocumentView.MPdfViewCtrlTabHostFragment?.CurrentPdfViewCtrlFragment?.PdfDoc;
+            var bookmarks = pdftron.PDF.Tools.Utils.BookmarkManager.GetPdfBookmarks(pdfDoc);
+            foreach (var bookmark in bookmarks)
+            {
+                Console.WriteLine("bookmark: " + bookmark.Title + "|" + bookmark.PageNumber);
+            }
         }
 
         void SetupEventHandlers()
