@@ -5,6 +5,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using AndroidX.Fragment.App;
+
 using pdftron.PDF.Config;
 using pdftron.PDF.Controls;
 
@@ -47,6 +48,11 @@ namespace CustomRenderer.Droid
             NavigationButtonPressed?.Invoke(this, new System.EventArgs());
         }
 
+        public override void OnTabDocumentLoaded(string tag)
+        {
+            base.OnTabDocumentLoaded(tag);
+        }
+
         public override bool CanShowFileInFolder()
         {
             return false;
@@ -67,6 +73,36 @@ namespace CustomRenderer.Droid
             base.OnLastTabClosed();
 
             NavigationButtonPressed?.Invoke(this, new System.EventArgs());
+        }
+
+        public override bool OnToolbarOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.action_share)
+            {
+                PrintPdfBookmarks();
+            }
+            return base.OnToolbarOptionsItemSelected(item);
+        }
+
+
+        public void PrintPdfBookmarks()
+        {
+            var pdfdoc = GetPDFViewCtrl().InnerDoc;
+            var bookmark = pdftron.PDF.Tools.Utils.BookmarkManager.GetRootPdfBookmark(pdfdoc, false);
+            var bookmarks = pdftron.PDF.Tools.Utils.BookmarkManager.GetPdfBookmarks(bookmark);
+            foreach(var bm in bookmarks)
+            {
+                System.Console.WriteLine("title: " + bm.Title);
+            }
+        }
+
+        private pdftronprivate.PDF.PDFViewCtrl GetPDFViewCtrl()
+        {
+            if (MPdfViewCtrlTabHostFragment != null && MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment != null)
+            {
+                return MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PDFViewCtrl;
+            }
+            return null;
         }
     }
 }
