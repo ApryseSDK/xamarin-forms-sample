@@ -7,6 +7,7 @@ using Android.Widget;
 using AndroidX.Fragment.App;
 
 using pdftron.PDF.Config;
+using pdftron.PDF.Tools;
 using pdftron.PDF.Controls;
 
 namespace CustomRenderer.Droid
@@ -51,6 +52,26 @@ namespace CustomRenderer.Droid
         public override void OnTabDocumentLoaded(string tag)
         {
             base.OnTabDocumentLoaded(tag);
+
+            // setup annot manager
+            var tm = GetPDFViewCtrl().ToolManager as ToolManager;
+            tm.EnableAnnotManager("Bob");
+            tm.AnnotManager.LocalChanged += (sender, e) =>
+            {
+                System.Console.WriteLine("LocalChanged: action: " + e.Action + ", xfdf: " + e.XfdfCommand);
+                // a local annotation change event has happened,
+                // now is the time to send the XFDF command string to your remote service
+                // action is one of {@link AnnotManager.AnnotationAction#ADD}
+                //                  {@link AnnotManager.AnnotationAction#MODIFY}
+                //                  {@link AnnotManager.AnnotationAction#DELETE}
+                // xfdfCommand is the XFDF command string, modification to this string is not recommended
+            };
+        }
+
+        public void ReceivedAnnotationEvents(string xfdfCommand)
+        {
+            var tm = GetPDFViewCtrl().ToolManager as ToolManager;
+            tm.AnnotManager?.OnRemoteChange(xfdfCommand);
         }
 
         public override bool CanShowFileInFolder()
