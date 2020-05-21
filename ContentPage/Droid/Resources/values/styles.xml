@@ -3,7 +3,7 @@
     <style name="MainTheme" parent="MainTheme.Base">
     </style>
     <!-- Base theme applied no matter what API -->
-    <style name="MainTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="MainTheme.Base" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
         <item name="windowNoTitle">true</item>
         <!--We will be using the toolbar so no need to show ActionBar-->
@@ -25,7 +25,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="CustomAppTheme" parent="MainTheme.Base">
+    <style name="CustomAppTheme" parent="MainTheme">
+      <item name="colorPrimary">@color/colorPrimary</item>
+      <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+      <item name="colorAccent">@color/colorAccent</item>
+      
       <item name="actionMenuTextColor">@android:color/white</item>
       <item name="actionModeBackground">?attr/colorPrimary</item>
     </style>
