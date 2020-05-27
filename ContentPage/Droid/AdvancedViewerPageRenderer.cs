@@ -40,7 +40,7 @@ namespace CustomRenderer.Droid
         {
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<Page> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Page> e)
         {
             base.OnElementChanged(e);
 
@@ -67,7 +67,7 @@ namespace CustomRenderer.Droid
             view = activity.LayoutInflater.Inflate(Resource.Layout.AdvancedViewerLayout, this, false);
 
             mDocumentView = view.FindViewById<DocumentView>(Resource.Id.document_view);
-            mDocumentView.MPdfViewCtrlTabHostFragment.TabDocumentLoaded += MPdfViewCtrlTabHostFragment_TabDocumentLoaded;
+            mDocumentView.TabDocumentLoaded += MDocumentView_TabDocumentLoaded;
 
             var context = this.Context;
             FragmentManager childManager = null;
@@ -88,9 +88,11 @@ namespace CustomRenderer.Droid
             }
         }
 
-        private void MPdfViewCtrlTabHostFragment_TabDocumentLoaded(object sender, PdfViewCtrlTabHostFragment.TabDocumentLoadedEventArgs e)
+        private void MDocumentView_TabDocumentLoaded(object sender, PdfViewCtrlTabHostFragment.TabDocumentLoadedEventArgs e)
         {
             mPdfDoc = TypeConvertHelper.ConvPdfDocToManaged(mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PdfDoc);
+
+            mockAnnotChange();
 
             var toolManager = mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.ToolManager;
             toolManager.AnnotationsAdded += ToolManager_AnnotationsAdded;
@@ -102,12 +104,12 @@ namespace CustomRenderer.Droid
         {
             foreach (var annotPair in e.Annots)
             {
-                FDFDoc fdfDoc;
-                var annots = new ArrayList();
-                annots.Add(TypeConvertHelper.ConvAnnotToManaged(annotPair.Key));
-                fdfDoc = this.mPdfDoc.FDFExtract(annots);
+                // for delete, we just want the id
 
-                String xfdf = fdfDoc.SaveAsXFDF();
+                var annot = TypeConvertHelper.ConvAnnotToManaged(annotPair.Key);
+                var id = annot?.GetUniqueID()?.GetAsPDFText();
+                var xfdf = "<delete><id>" + id + "</id></delete>";
+
                 Console.WriteLine("pre remove xfdf", xfdf);
             }
         }
@@ -122,6 +124,10 @@ namespace CustomRenderer.Droid
                 fdfDoc = this.mPdfDoc.FDFExtract(annots);
 
                 String xfdf = fdfDoc.SaveAsXFDF();
+
+                xfdf = xfdf.Replace("<annots>", "<modify>");
+                xfdf = xfdf.Replace("</annots>", "</modify>");
+
                 Console.WriteLine("modify xfdf", xfdf);
             }
         }
@@ -136,6 +142,10 @@ namespace CustomRenderer.Droid
                 fdfDoc = this.mPdfDoc.FDFExtract(annots);
 
                 String xfdf = fdfDoc.SaveAsXFDF();
+
+                xfdf = xfdf.Replace("<annots>", "<add>");
+                xfdf = xfdf.Replace("</annots>", "</add>");
+
                 Console.WriteLine("add xfdf", xfdf);
             }
         }
@@ -182,6 +192,12 @@ namespace CustomRenderer.Droid
             return config;
         }
 
+        private void mockAnnotChange()
+        {
+            var xfdf = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xfdf xmlns=\"http://ns.adobe.com/xfdf/\" xml:space=\"preserve\">\n\t<add>\n\t\t<square style=\"solid\" width=\"5\" color=\"#E44234\" opacity=\"1\" creationdate=\"D:20200527165902Z\" flags=\"print\" date=\"D:20200527165902Z\" name=\"7dd20d5e-3568-418a-ade6-1d1e50e36881\" page=\"1\" rect=\"97.6445,426.754,202.999,510.573\" title=\"\" />\n\t</add>\n\t<pdf-info import-version=\"3\" version=\"2\" xmlns=\"http://www.pdftron.com/pdfinfo\" />\n</xfdf>";
+            onRemoteChange(xfdf);
+        }
+
         private void onRemoteChange(String xfdf)
         {
             this.mPdfDoc.Lock();
@@ -190,6 +206,8 @@ namespace CustomRenderer.Droid
             fdfDoc.MergeAnnots(xfdf);
 
             this.mPdfDoc.FDFUpdate(fdfDoc);
+
+            mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PDFViewCtrl.Update(true);
 
             this.mPdfDoc.Unlock();
         }
