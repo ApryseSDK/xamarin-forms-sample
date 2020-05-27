@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Graphics;
 using Android.Widget;
 
+using pdftron.FDF;
+using pdftron.PDF;
 using pdftron.PDF.Tools;
 using pdftron.PDF.Controls;
 using pdftron.PDF.Tools.Utils;
@@ -19,6 +21,7 @@ using Android.Content.Res;
 
 using FragmentActivity = AndroidX.Fragment.App.FragmentActivity;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+using System.Collections;
 
 [assembly: ExportRenderer(typeof(AdvancedViewerPage), typeof(AdvancedViewerPageRenderer))]
 namespace CustomRenderer.Droid
@@ -30,6 +33,8 @@ namespace CustomRenderer.Droid
         private DocumentView mDocumentView;
 
         Activity activity;
+
+        private PDFDoc mPdfDoc;
 
         public AdvancedViewerPageRenderer(Context context) : base(context)
         {
@@ -62,6 +67,7 @@ namespace CustomRenderer.Droid
             view = activity.LayoutInflater.Inflate(Resource.Layout.AdvancedViewerLayout, this, false);
 
             mDocumentView = view.FindViewById<DocumentView>(Resource.Id.document_view);
+            mDocumentView.MPdfViewCtrlTabHostFragment.TabDocumentLoaded += MPdfViewCtrlTabHostFragment_TabDocumentLoaded;
 
             var context = this.Context;
             FragmentManager childManager = null;
@@ -79,6 +85,58 @@ namespace CustomRenderer.Droid
                 {
                     mDocumentView.OpenDocument(GetFile(), "", GetConfig(), childManager);
                 }
+            }
+        }
+
+        private void MPdfViewCtrlTabHostFragment_TabDocumentLoaded(object sender, PdfViewCtrlTabHostFragment.TabDocumentLoadedEventArgs e)
+        {
+            mPdfDoc = TypeConvertHelper.ConvPdfDocToManaged(mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PdfDoc);
+
+            var toolManager = mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.ToolManager;
+            toolManager.AnnotationsAdded += ToolManager_AnnotationsAdded;
+            toolManager.AnnotationsModified += ToolManager_AnnotationsModified;
+            toolManager.AnnotationsPreRemove += ToolManager_AnnotationsPreRemove;
+        }
+
+        private void ToolManager_AnnotationsPreRemove(object sender, ToolManager.AnnotationsPreRemoveEventArgs e)
+        {
+            foreach (var annotPair in e.Annots)
+            {
+                FDFDoc fdfDoc;
+                var annots = new ArrayList();
+                annots.Add(TypeConvertHelper.ConvAnnotToManaged(annotPair.Key));
+                fdfDoc = this.mPdfDoc.FDFExtract(annots);
+
+                String xfdf = fdfDoc.SaveAsXFDF();
+                Console.WriteLine("pre remove xfdf", xfdf);
+            }
+        }
+
+        private void ToolManager_AnnotationsModified(object sender, ToolManager.AnnotationsModifiedEventArgs e)
+        {
+            foreach (var annotPair in e.Annots)
+            {
+                FDFDoc fdfDoc;
+                var annots = new ArrayList();
+                annots.Add(TypeConvertHelper.ConvAnnotToManaged(annotPair.Key));
+                fdfDoc = this.mPdfDoc.FDFExtract(annots);
+
+                String xfdf = fdfDoc.SaveAsXFDF();
+                Console.WriteLine("modify xfdf", xfdf);
+            }
+        }
+
+        private void ToolManager_AnnotationsAdded(object sender, ToolManager.AnnotationsAddedEventArgs e)
+        {
+            foreach (var annotPair in e.Annots)
+            {
+                FDFDoc fdfDoc;
+                var annots = new ArrayList();
+                annots.Add(TypeConvertHelper.ConvAnnotToManaged(annotPair.Key));
+                fdfDoc = this.mPdfDoc.FDFExtract(annots);
+
+                String xfdf = fdfDoc.SaveAsXFDF();
+                Console.WriteLine("add xfdf", xfdf);
             }
         }
 
@@ -122,6 +180,18 @@ namespace CustomRenderer.Droid
                 .SaveCopyExportPath(this.Context.FilesDir.AbsolutePath)
                 .Build();
             return config;
+        }
+
+        private void onRemoteChange(String xfdf)
+        {
+            this.mPdfDoc.Lock();
+
+            FDFDoc fdfDoc = this.mPdfDoc.FDFExtract(PDFDoc.ExtractFlag.e_annots_only);
+            fdfDoc.MergeAnnots(xfdf);
+
+            this.mPdfDoc.FDFUpdate(fdfDoc);
+
+            this.mPdfDoc.Unlock();
         }
     }
 }
