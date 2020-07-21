@@ -25,12 +25,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="CustomAppTheme" parent="MainTheme">
+    <style name="PDFTronAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
       <item name="colorPrimary">@color/colorPrimary</item>
       <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
       <item name="colorAccent">@color/colorAccent</item>
-      
-      <item name="actionMenuTextColor">@android:color/white</item>
-      <item name="actionModeBackground">?attr/colorPrimary</item>
     </style>
+
+    <style name="CustomAppTheme" parent="PDFTronAppTheme">
+      <item name="actionMenuTextColor">@android:color/white</item>
+      <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+      <!-- Action bar -->
+      <item name="actionModeBackground">?attr/colorPrimary</item>
+      <item name="windowActionModeOverlay">true</item>
+    </style>
+  
 </resources>
