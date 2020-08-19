@@ -16369,10 +16369,13 @@ namespace CustomRenderer.Droid
 			public const int sepia_mode_filter = 2131689476;
 			
 			// aapt resource value: 0x7F0F0005
-			public const int stamps_icons = 2131689477;
+			public const int sixth = 2131689477;
 			
 			// aapt resource value: 0x7F0F0006
-			public const int stickynote_icons = 2131689478;
+			public const int stamps_icons = 2131689478;
+			
+			// aapt resource value: 0x7F0F0007
+			public const int stickynote_icons = 2131689479;
 			
 			static Raw()
 			{

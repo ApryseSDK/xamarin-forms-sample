@@ -84,7 +84,18 @@ namespace CustomRenderer.Droid
 
         void SetupEventHandlers()
         {
+            mDocumentView.TabDocumentLoaded += MDocumentView_TabDocumentLoaded;
             mDocumentView.NavigationButtonPressed += DocumentView_OnNavButtonPressed;
+        }
+
+        private void MDocumentView_TabDocumentLoaded(object sender, PdfViewCtrlTabHostFragment.TabDocumentLoadedEventArgs e)
+        {
+            var pdfviewctrl = mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PDFViewCtrl;
+            mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.UpdateViewMode(pdftronprivate.PDF.PDFViewCtrl.PagePresentationModes.Facing);
+
+
+            AddCanvas(1);
+            AddCanvas(2);
         }
 
         async void DocumentView_OnNavButtonPressed(object sender, EventArgs e)
@@ -105,7 +116,7 @@ namespace CustomRenderer.Droid
 
         private Android.Net.Uri GetFile()
         {
-            var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
+            var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sixth, "sample", ".pdf");
             return Android.Net.Uri.FromFile(file);
         }
 
@@ -115,6 +126,8 @@ namespace CustomRenderer.Droid
                 .SetAutoSelect(true);
             var builder = new ViewerConfig.Builder();
             var config = builder
+                .ShowTopToolbar(false)
+                .ShowBottomNavBar(false)
                 .MultiTabEnabled(true)
                 .FullscreenModeEnabled(false)
                 .UseSupportActionBar(false)
@@ -122,6 +135,31 @@ namespace CustomRenderer.Droid
                 .SaveCopyExportPath(this.Context.FilesDir.AbsolutePath)
                 .Build();
             return config;
+        }
+
+        private void AddCanvas(int pageNumber)
+        {
+            var pdfviewctrl = mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PDFViewCtrl;
+            var pdfdoc = mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PdfDoc;
+
+            var firstPage = pdfdoc.GetPage(pageNumber);
+            var cropBox = firstPage.CropBox;
+
+            var canvasHeight = (int)(cropBox.Height);
+            var canvasWidth = (int)(cropBox.Width);
+
+            var layout = new NativeCustomRelativeLayout(pdfviewctrl.Context);
+            var color = new Android.Graphics.Color(0, 255, 00, 20);
+            layout.SetBackgroundColor(color);
+            layout.SetRect(pdfviewctrl, new pdftronprivate.PDF.Rect(0, 0, canvasWidth, canvasHeight), pageNumber);
+            pdfviewctrl.AddView(layout);
+
+            var myButton = new Android.Widget.Button(pdfviewctrl.Context);
+            myButton.Text = "BUTTON";
+            myButton.SetTextColor(Android.Graphics.Color.Pink);
+
+
+            layout.AddView(myButton);
         }
     }
 }
