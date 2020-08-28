@@ -47,10 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="PDFTron.Android">
-      <Version>7.1.4</Version>
+      <Version>7.1.5-pre1</Version>
     </PackageReference>
     <PackageReference Include="PDFTron.Android.Tools">
-      <Version>7.1.4</Version>
+      <Version>7.1.5-pre1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
   </ItemGroup>

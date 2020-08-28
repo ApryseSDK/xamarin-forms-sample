@@ -15,6 +15,7 @@ namespace CustomRenderer.Droid
         private static string TAG = "DocumentView";
 
         public event System.EventHandler NavigationButtonPressed;
+        public event System.EventHandler<PdfViewCtrlTabHostFragment.TabDocumentLoadedEventArgs> TabDocumentLoaded;
 
         public DocumentView(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -45,6 +46,13 @@ namespace CustomRenderer.Droid
             base.OnNavButtonPressed();
 
             NavigationButtonPressed?.Invoke(this, new System.EventArgs());
+        }
+
+        public override void OnTabDocumentLoaded(string tag)
+        {
+            base.OnTabDocumentLoaded(tag);
+
+            TabDocumentLoaded?.Invoke(this, new PdfViewCtrlTabHostFragment.TabDocumentLoadedEventArgs(tag));
         }
 
         public override bool CanShowFileInFolder()
