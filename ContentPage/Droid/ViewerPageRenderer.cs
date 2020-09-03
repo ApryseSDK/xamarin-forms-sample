@@ -17,6 +17,8 @@ using pdftron.PDF.Tools.Utils;
 using pdftron.PDF.Config;
 using Android.Content.Res;
 using AndroidX.Fragment.App;
+using System.Collections.Generic;
+using Android.Graphics.Drawables;
 
 [assembly: ExportRenderer(typeof(ViewerPage), typeof(ViewerPageRenderer))]
 namespace CustomRenderer.Droid
@@ -30,6 +32,9 @@ namespace CustomRenderer.Droid
         private ToolManager mToolManager;
         private AnnotationToolbar mAnnotationToolbar;
         private ThumbnailSlider mSeekBar;
+
+        // bookmarks
+        private int mBookmarkDialogCurrentTab = 0;
 
         Activity activity;
 
@@ -88,6 +93,17 @@ namespace CustomRenderer.Droid
             mAnnotationToolbar.Show();
 
             mSeekBar = view.FindViewById<ThumbnailSlider>(Resource.Id.thumbseekbar);
+            mSeekBar.MenuItemClicked += (sender, e) =>
+            {
+                if (e.MenuItemPosition == ThumbnailSlider.PositionLeft)
+                {
+                    openThumbnailsDialog();
+                }
+                else if (e.MenuItemPosition == ThumbnailSlider.PositionRight)
+                {
+                    openBookmarksDialog(mBookmarkDialogCurrentTab);
+                }
+            };
         }
 
         void SetupEventHandlers()
@@ -138,6 +154,80 @@ namespace CustomRenderer.Droid
             mPdfViewCtrl = null;
             mPdfDoc?.Close();
             mPdfDoc = null;
+        }
+
+        private void openThumbnailsDialog()
+        {
+            var thumbDialog = ThumbnailsViewFragment.NewInstance().SetPdfViewCtrl(mPdfViewCtrl);
+            thumbDialog.ExportThumbnails += (sender, e) =>
+            {
+                Console.WriteLine("ExportThumbnails");
+            };
+            thumbDialog.ThumbnailsViewDialogDismiss += (sender, e) =>
+            {
+                Console.WriteLine("ThumbnailsViewDialogDismiss");
+            };
+            thumbDialog.SetStyle((int)DialogFragmentStyle.NoTitle, Resource.Style.CustomAppTheme);
+            FragmentActivity fragmentActivity = null;
+            if (activity is FragmentActivity)
+            {
+                fragmentActivity = activity as FragmentActivity;
+            }
+            thumbDialog.Show(fragmentActivity.SupportFragmentManager, "thumbnails_dialog");
+        }
+
+        private void openBookmarksDialog(int which)
+        {
+            var bookmarksDialog = pdftron.PDF.Dialog.BookmarksDialogFragment.NewInstance();
+            bookmarksDialog.SetPdfViewCtrl(mPdfViewCtrl);
+            List<DialogFragmentTab> tabs = new List<DialogFragmentTab>();
+            var annotationsTab = new DialogFragmentTab(
+                Java.Lang.Class.FromType(typeof(AnnotationDialogFragment)), BookmarksTabLayout.TagTabAnnotation, GetDrawable(Resource.Drawable.ic_annotations_white_24dp), null, "Annotations", null, Resource.Menu.fragment_annotlist_sort);
+            var outlineDialog = new DialogFragmentTab(
+                Java.Lang.Class.FromType(typeof(OutlineDialogFragment)), BookmarksTabLayout.TagTabOutline, GetDrawable(Resource.Drawable.ic_outline_white_24dp), null, "Outline", null);
+            var userBookmarksDialog = new DialogFragmentTab(
+                Java.Lang.Class.FromType(typeof(UserBookmarkDialogFragment)), BookmarksTabLayout.TagTabBookmark, GetDrawable(Resource.Drawable.ic_bookmarks_white_24dp), null, "Bookmarks", null);
+            tabs.Add(annotationsTab);
+            tabs.Add(outlineDialog);
+            tabs.Add(userBookmarksDialog);
+            bookmarksDialog.SetDialogFragmentTabs(tabs, which);
+            bookmarksDialog.SetStyle((int)DialogFragmentStyle.NoTitle, Resource.Style.CustomAppTheme);
+            FragmentActivity fragmentActivity = null;
+            if (activity is FragmentActivity)
+            {
+                fragmentActivity = activity as FragmentActivity;
+            }
+            bookmarksDialog.Show(fragmentActivity.SupportFragmentManager, "bookmarks_dialog");
+            bookmarksDialog.AnnotationClicked += (sender, e) =>
+            {
+                bookmarksDialog.Dismiss();
+            };
+            bookmarksDialog.ExportAnnotations += (sender, e) =>
+            {
+                bookmarksDialog.Dismiss();
+            };
+            bookmarksDialog.OutlineClicked += (sender, e) =>
+            {
+                bookmarksDialog.Dismiss();
+            };
+            bookmarksDialog.UserBookmarkClick += (sender, e) =>
+            {
+                mPdfViewCtrl.SetCurrentPage(e.PageNum);
+                bookmarksDialog.Dismiss();
+            };
+            bookmarksDialog.BookmarksDialogWillDismiss += (sender, e) =>
+            {
+                bookmarksDialog.Dismiss();
+            };
+            bookmarksDialog.BookmarksDialogDismissed += (sender, e) =>
+            {
+                mBookmarkDialogCurrentTab = e.TabIndex;
+            };
+        }
+
+        private Drawable GetDrawable(int res)
+        {
+            return pdftron.PDF.Tools.Utils.Utils.GetDrawable(activity, res);
         }
     }
 }
