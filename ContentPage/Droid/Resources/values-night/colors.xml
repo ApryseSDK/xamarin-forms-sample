@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="controls_annot_style_preview_bg">@color/gray200</color>
+  <color name="controls_edit_toolbar_tool">#e6e6e6</color>
+</resources>
