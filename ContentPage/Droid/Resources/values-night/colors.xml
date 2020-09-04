@@ -2,4 +2,6 @@
 <resources>
   <color name="controls_annot_style_preview_bg">@color/gray200</color>
   <color name="controls_edit_toolbar_tool">#e6e6e6</color>
+  <color name="tools_dialog_sticky_note_textbox_background">#FFF9C4</color>
+  <color name="tools_dialog_annotation_popup_background">#F5F5F5</color>
 </resources>
