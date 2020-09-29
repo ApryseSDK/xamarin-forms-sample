@@ -10,7 +10,7 @@ using pdftron.PDF.Controls;
 
 namespace CustomRenderer.Droid
 {
-    public class DocumentView : pdftron.PDF.Controls.DocumentView
+    public class DocumentView : pdftron.PDF.Controls.DocumentView2
     {
         private static string TAG = "DocumentView";
 
