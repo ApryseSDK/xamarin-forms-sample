@@ -48,7 +48,7 @@ namespace CustomRenderer.iOS
             mTabViewController = null;
 
             nuint index = tabbedDocumentViewController.SelectedIndex;
-            PTDocumentViewController documentViewController = tabbedDocumentViewController.SelectedViewController;
+            PTDocumentBaseViewController documentViewController = tabbedDocumentViewController.SelectedViewController;
             PDFDoc pdfDoc = TypeConvertHelper.ConvPdfDocToManaged(documentViewController.PdfViewCtrl.GetDoc());
 
             documentViewController.CloseDocumentWithCompletionHandler((bool success) => {
@@ -65,6 +65,8 @@ namespace CustomRenderer.iOS
         void SetupUserInterface()
         {
             mTabViewController = new PTTabbedDocumentViewController();
+            mTabViewController.ViewControllerClass = new ObjCRuntime.Class(typeof(PTDocumentController));
+
             mTabViewController.TabsEnabled = false;
             UINavigationController navigationController = new UINavigationController(mTabViewController);
 
@@ -77,8 +79,14 @@ namespace CustomRenderer.iOS
 
         void SetupEventHandlers()
         {
-            mTabViewController.WillRemoveTabAtIndex += (sender, e) => {
-                if (mTabViewController == null) {
+            mTabViewController.CreateViewController += (sender, e) =>
+            {
+                return new PTDocumentController();
+            };
+            mTabViewController.WillRemoveTabAtIndex += (sender, e) =>
+            {
+                if (mTabViewController == null)
+                {
                     return;
                 }
                 if (((PTTabbedDocumentViewController)sender).TabURLs.Length > 1)
