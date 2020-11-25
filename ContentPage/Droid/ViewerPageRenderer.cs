@@ -66,6 +66,11 @@ namespace CustomRenderer.Droid
             mPdfViewCtrl = view.FindViewById<pdftron.PDF.PDFViewCtrl>(Resource.Id.pdfviewctrl);
             AppUtils.SetupPDFViewCtrl(mPdfViewCtrl, PDFViewCtrlConfig.GetDefaultConfig(this.Context));
 
+            mPdfViewCtrl.DocumentLoad += (sender, e) =>
+            {
+                mToolManager.Tool = mToolManager.CreateTool(ToolManager.ToolMode.OvalCreate, mToolManager.Tool);
+            };
+
             var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
             mPdfDoc = mPdfViewCtrl.OpenPDFUri(Android.Net.Uri.FromFile(file), "");
 
@@ -80,6 +85,7 @@ namespace CustomRenderer.Droid
             {
                 mAnnotationToolbar.Show(AnnotationToolbar.StartModeEditToolbar, null, 0, e.Mode, !mAnnotationToolbar.IsShowing);
             };
+            mToolManager.ToolCreated += MToolManager_ToolCreated;
 
             mAnnotationToolbar = view.FindViewById<AnnotationToolbar>(Resource.Id.annotationtoolbar);
             mAnnotationToolbar.Setup(mToolManager);
@@ -88,6 +94,11 @@ namespace CustomRenderer.Droid
             mAnnotationToolbar.Show();
 
             mSeekBar = view.FindViewById<ThumbnailSlider>(Resource.Id.thumbseekbar);
+        }
+
+        private void MToolManager_ToolCreated(object sender, ToolManager.ToolChangedEventArgs e)
+        {
+            Console.WriteLine("Tool Created!");
         }
 
         void SetupEventHandlers()
