@@ -148,10 +148,10 @@
       <Version>6.2.9</Version>
     </PackageReference>
     <PackageReference Include="PDFTron.UWP">
-      <Version>8.0.1</Version>
+      <Version>8.0.2</Version>
     </PackageReference>
     <PackageReference Include="PDFTron.UWP.Tools">
-      <Version>8.0.1</Version>
+      <Version>8.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>4.6.0.800</Version>
