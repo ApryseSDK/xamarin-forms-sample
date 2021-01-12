@@ -72,6 +72,8 @@ namespace CustomRenderer.UWP
         protected override Size ArrangeOverride(Size finalSize)
         {
             page.Arrange(new Windows.Foundation.Rect(0, 0, finalSize.Width, finalSize.Height));
+            page.UpdateLayout();
+
             return finalSize;
         }
     }
