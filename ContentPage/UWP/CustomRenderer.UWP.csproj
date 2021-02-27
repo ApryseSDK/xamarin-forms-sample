@@ -98,6 +98,7 @@
     <Compile Include="..\..\Common\Key.cs">
       <Link>Key.cs</Link>
     </Compile>
+    <Compile Include="AdvancedViewerPageRenderer.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -148,10 +149,10 @@
       <Version>6.2.11</Version>
     </PackageReference>
     <PackageReference Include="PDFTron.UWP">
-      <Version>8.1.0</Version>
+      <Version>8.1.1</Version>
     </PackageReference>
     <PackageReference Include="PDFTron.UWP.Tools">
-      <Version>8.1.0</Version>
+      <Version>8.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>4.6.0.800</Version>
