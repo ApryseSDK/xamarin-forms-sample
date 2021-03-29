@@ -52,6 +52,9 @@
     <PackageReference Include="PDFTron.Android.Tools">
       <Version>8.1.1</Version>
     </PackageReference>
+    <PackageReference Include="ReactiveUI">
+      <Version>13.2.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
   </ItemGroup>
   <ItemGroup>
