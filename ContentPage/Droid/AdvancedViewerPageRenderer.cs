@@ -19,6 +19,7 @@ using Android.Content.Res;
 
 using FragmentActivity = AndroidX.Fragment.App.FragmentActivity;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+using pdftron.PDF.Annots;
 
 [assembly: ExportRenderer(typeof(AdvancedViewerPage), typeof(AdvancedViewerPageRenderer))]
 namespace CustomRenderer.Droid
@@ -62,6 +63,7 @@ namespace CustomRenderer.Droid
             view = activity.LayoutInflater.Inflate(Resource.Layout.AdvancedViewerLayout, this, false);
 
             mDocumentView = view.FindViewById<DocumentView>(Resource.Id.document_view);
+            mDocumentView.TabDocumentLoaded += DocumentView_TabDocumentLoaded;
 
             var context = this.Context;
             FragmentManager childManager = null;
@@ -85,6 +87,55 @@ namespace CustomRenderer.Droid
         void SetupEventHandlers()
         {
             mDocumentView.NavigationButtonPressed += DocumentView_OnNavButtonPressed;
+        }
+
+        private void DocumentView_TabDocumentLoaded(object sender, PdfViewCtrlTabHostFragment.TabDocumentLoadedEventArgs e)
+        {
+            var toolManager = mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.ToolManager;
+            toolManager.AnnotationsAdded += ToolManager_AnnotationsAdded;
+            toolManager.AnnotationsModified += ToolManager_AnnotationsModified;
+        }
+
+        private void handleSignatureWidget(pdftron.PDF.Annot annot)
+        {
+            var widget = new Widget(annot);
+            var field = widget.GetField();
+            if (field.GetType() == pdftron.PDF.Field.Type.e_signature)
+            {
+                var sigWidget = new SignatureWidget(annot);
+                var digiSigField = sigWidget.GetDigitalSignatureField();
+                if (digiSigField.HasVisibleAppearance())
+                {
+                    Console.WriteLine("signature has appearance");
+                }
+                else
+                {
+                    Console.WriteLine("signature does not have appearance");
+                }
+            }
+        }
+
+        private void ToolManager_AnnotationsAdded(object sender, ToolManager.AnnotationsAddedEventArgs e)
+        {
+            foreach (var annotPair in e.Annots)
+            {
+                var annot = pdftron.PDF.TypeConvertHelper.ConvAnnotToManaged(annotPair.Key);
+                if (annot.GetType() == pdftron.PDF.Annot.Type.e_Widget)
+                {
+                    handleSignatureWidget(annot);
+                }
+            }
+        }
+        private void ToolManager_AnnotationsModified(object sender, ToolManager.AnnotationsModifiedEventArgs e)
+        {
+            foreach (var annotPair in e.Annots)
+            {
+                var annot = pdftron.PDF.TypeConvertHelper.ConvAnnotToManaged(annotPair.Key);
+                if (annot.GetType() == pdftron.PDF.Annot.Type.e_Widget)
+                {
+                    handleSignatureWidget(annot);
+                }
+            }
         }
 
         async void DocumentView_OnNavButtonPressed(object sender, EventArgs e)
