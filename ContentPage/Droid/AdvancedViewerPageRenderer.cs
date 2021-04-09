@@ -63,6 +63,7 @@ namespace CustomRenderer.Droid
             view = activity.LayoutInflater.Inflate(Resource.Layout.AdvancedViewerLayout, this, false);
 
             mDocumentView = view.FindViewById<DocumentView>(Resource.Id.document_view);
+            mDocumentView.SetShowNavIcon(false);
             mDocumentView.TabDocumentLoaded += DocumentView_TabDocumentLoaded;
 
             var context = this.Context;
@@ -166,7 +167,12 @@ namespace CustomRenderer.Droid
                 .SetAutoSelect(true);
             var builder = new ViewerConfig.Builder();
             var config = builder
-                .MultiTabEnabled(true)
+                .HideToolbars(new String[]{
+                        pdftron.PDF.Widget.Toolbar.Component.DefaultToolbars.TagPrepareFormToolbar
+                })
+                .MultiTabEnabled(false)
+                .ShowReflowOption(false)
+                .ShowCloseTabOption(false)
                 .FullscreenModeEnabled(false)
                 .UseSupportActionBar(false)
                 .ToolManagerBuilder(toolmanagerBuilder)
