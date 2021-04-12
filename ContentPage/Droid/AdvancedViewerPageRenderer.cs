@@ -20,6 +20,7 @@ using Android.Content.Res;
 using FragmentActivity = AndroidX.Fragment.App.FragmentActivity;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
 using pdftron.PDF.Annots;
+using pdftron.FDF;
 
 [assembly: ExportRenderer(typeof(AdvancedViewerPage), typeof(AdvancedViewerPageRenderer))]
 namespace CustomRenderer.Droid
@@ -95,6 +96,50 @@ namespace CustomRenderer.Droid
             var toolManager = mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.ToolManager;
             toolManager.AnnotationsAdded += ToolManager_AnnotationsAdded;
             toolManager.AnnotationsModified += ToolManager_AnnotationsModified;
+
+
+            CheckWidgetStatus();
+
+            var xfdf = "";
+
+            var pdfDoc = pdftron.PDF.TypeConvertHelper.ConvPdfDocToManaged(mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PdfDoc);
+            var pdfviewctrl = mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PDFViewCtrl;
+            pdfDoc.FDFMerge(FDFDoc.CreateFromXFDF(xfdf));
+            pdfviewctrl.Update(true);
+
+            CheckWidgetStatus();
+        }
+
+        private void CheckWidgetStatus()
+        {
+            var pdfDoc = pdftron.PDF.TypeConvertHelper.ConvPdfDocToManaged(mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PdfDoc);
+            var pdfviewctrl = mDocumentView.MPdfViewCtrlTabHostFragment.CurrentPdfViewCtrlFragment.PDFViewCtrl;
+            int count = pdfDoc.GetPageCount();
+            for (int p = 1; p <= count; p++)
+            {
+                var annots = pdfviewctrl.GetAnnotationsOnPage(p);
+                foreach (var nativeAnnot in annots)
+                {
+                    var annot = pdftron.PDF.TypeConvertHelper.ConvAnnotToManaged(nativeAnnot);
+                    if (annot.IsValid() && annot.GetType() == pdftron.PDF.Annot.Type.e_Widget)
+                    {
+                        var widget = new Widget(annot);
+                        if (widget.GetField().GetType() == pdftron.PDF.Field.Type.e_signature)
+                        {
+                            SignatureWidget signatureWidget = new SignatureWidget(annot);
+                            pdftron.PDF.DigitalSignatureField digitalSignatureField = signatureWidget.GetDigitalSignatureField();
+                            if (digitalSignatureField.HasVisibleAppearance())
+                            {
+                                Console.WriteLine(widget.GetField().GetName() + ": HAS APPEARANCE");
+                            }
+                            else
+                            {
+                                Console.WriteLine(widget.GetField().GetName() + ": NO APPEARANCE");
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void handleSignatureWidget(pdftron.PDF.Annot annot)
