@@ -44,13 +44,17 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="PDFTron.Android">
-      <Version>9.0.0</Version>
+      <Version>9.0.1</Version>
     </PackageReference>
     <PackageReference Include="PDFTron.Android.Tools">
-      <Version>9.0.0</Version>
+      <Version>9.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
   </ItemGroup>
