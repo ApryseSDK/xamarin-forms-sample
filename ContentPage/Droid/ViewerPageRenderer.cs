@@ -76,9 +76,39 @@ namespace CustomRenderer.Droid
             }
             mToolManager = ToolManagerBuilder.From().Build(fragmentActivity, mPdfViewCtrl);
             mToolManager.SetCanOpenEditToolbarFromPan(true);
+            mToolManager.AnnotPermissionCheckEnabled = true;
             mToolManager.OpenEditToolbar += (sender, e) =>
             {
                 mAnnotationToolbar.Show(AnnotationToolbar.StartModeEditToolbar, null, 0, e.Mode, !mAnnotationToolbar.IsShowing);
+            };
+            mToolManager.InterceptAnnotationHandling += (sender, e) =>
+            {
+                var annot = pdftron.PDF.TypeConvertHelper.ConvAnnotToManaged(e.Annot);
+                var extra = e.Extra;
+                bool shouldUnlock = false;
+                try
+                {
+                    mPdfViewCtrl.DocLock(true);
+                    shouldUnlock = true;
+                    if (annot != null && annot.IsValid() && annot.GetType() == pdftron.PDF.Annot.Type.e_Text)
+                    {
+                        int page = extra.GetInt(Tool.PageNumber);
+                        annot.SetFlag(pdftron.PDF.Annot.Flag.e_locked, true);
+                        mPdfViewCtrl.Update(annot, page);
+                    }
+                }
+                catch (pdftron.Common.PDFNetException ex)
+                {
+                    // no op
+                }
+                finally
+                {
+                    if (shouldUnlock)
+                    {
+                        mPdfViewCtrl.DocUnlock();
+                    }
+                }
+                e.Handled = false;
             };
 
             mAnnotationToolbar = view.FindViewById<AnnotationToolbar>(Resource.Id.annotationtoolbar);
