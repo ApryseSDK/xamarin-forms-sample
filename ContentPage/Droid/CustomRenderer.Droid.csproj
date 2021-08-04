@@ -14,7 +14,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
     <AssemblyName>CustomRenderer.Droid</AssemblyName>
-    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp />
   </PropertyGroup>
@@ -51,10 +51,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="PDFTron.Android">
-      <Version>9.0.1</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="PDFTron.Android.Tools">
-      <Version>9.0.1</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
   </ItemGroup>
