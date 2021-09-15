@@ -50,6 +50,9 @@ namespace CustomRenderer.UWP
         async Task SetupUserInterfaceAsync()
         {
             _viewerControl = new pdftron.PDF.Tools.Controls.Viewer.ViewerControl();
+            _viewerControl.InitializeOnCreation = false; 
+            _viewerControl.ShowMultiWindow = false; // Not supported on Xamarin
+
             string path = System.IO.Path.Combine(Package.Current.InstalledLocation.Path, "sample.pdf");
             StorageFile storageFile = await StorageFile.GetFileFromPathAsync(path);
             await _viewerControl.ActivateWithFileAsync(storageFile);
