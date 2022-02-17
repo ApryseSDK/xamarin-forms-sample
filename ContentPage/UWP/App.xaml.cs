@@ -50,7 +50,7 @@ namespace CustomRenderer.UWP
 
                 Xamarin.Forms.Forms.Init(e);
 
-                pdftron.PDFNet.Initialize(pdftron.Demo.Key.LicenseKey);
+                pdftron.PDFNet.Initialize();
                 System.Diagnostics.Debug.WriteLine(pdftron.PDFNet.GetVersion());
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
