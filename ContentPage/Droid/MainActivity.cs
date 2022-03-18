@@ -26,7 +26,7 @@ namespace CustomRenderer.Droid
             try
             {
                 pdftron.PDF.Tools.Utils.AppUtils.InitializePDFNetApplication(this);
-                Console.WriteLine(PDFNet.GetVersion());
+                Console.WriteLine(PDFNet.GetVersionString());
             }
             catch (pdftron.Common.PDFNetException e)
             {

@@ -20143,11 +20143,8 @@ namespace CustomRenderer.Droid
 			// aapt resource value: 0x7F090097
 			public const int animateToStart = 2131296407;
 			
-			// aapt resource value: 0x7F09009F
-			public const int annotations_content_view = 2131296415;
-			
 			// aapt resource value: 0x7F0900A0
-			public const int annotationtoolbar = 2131296416;
+			public const int annotations_content_view = 2131296416;
 			
 			// aapt resource value: 0x7F090099
 			public const int annotation_filter_dialog_container = 2131296409;
@@ -20166,6 +20163,9 @@ namespace CustomRenderer.Droid
 			
 			// aapt resource value: 0x7F09009E
 			public const int annotation_toolbar = 2131296414;
+			
+			// aapt resource value: 0x7F09009F
+			public const int annotation_toolbar_container = 2131296415;
 			
 			// aapt resource value: 0x7F090098
 			public const int annot_style = 2131296408;

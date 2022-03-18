@@ -1,22 +1,25 @@
 ﻿using System;
-using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using CustomRenderer;
 using CustomRenderer.Droid;
 using Android.App;
 using Android.Content;
-using Android.Hardware;
 using Android.Views;
-using Android.Graphics;
 using Android.Widget;
 
 using pdftron.PDF.Tools;
-using pdftron.PDF.Controls;
 using pdftron.PDF.Tools.Utils;
 using pdftron.PDF.Config;
 using Android.Content.Res;
 using AndroidX.Fragment.App;
+using pdftron.PDF.Widget.Toolbar.Component;
+using pdftron.PDF.Widget.Preset.Component;
+using pdftron.PDF.Widget.Toolbar;
+using AndroidX.Lifecycle;
+using pdftron.PDF.Widget.Preset.Component.View;
+using pdftron.PDF.Widget.Toolbar.Component.View;
+using pdftron.PDF.Widget.Toolbar.Builder;
 
 [assembly: ExportRenderer(typeof(ViewerPage), typeof(ViewerPageRenderer))]
 namespace CustomRenderer.Droid
@@ -28,10 +31,12 @@ namespace CustomRenderer.Droid
         private pdftron.PDF.PDFViewCtrl mPdfViewCtrl;
         private pdftron.PDF.PDFDoc mPdfDoc;
         private ToolManager mToolManager;
-        private AnnotationToolbar mAnnotationToolbar;
-        private ThumbnailSlider mSeekBar;
+        private AnnotationToolbarComponent mAnnotationToolbarComponent;
+        private PresetBarComponent mPresetBarComponent;
+        private FrameLayout mToolbarContainer;
+        private FrameLayout mPresetContainer;
 
-        Activity activity;
+        private FragmentActivity mFragmentActivity;
 
         public ViewerPageRenderer(Context context) : base(context)
         {
@@ -60,46 +65,68 @@ namespace CustomRenderer.Droid
 
         void SetupUserInterface()
         {
-            activity = this.Context as Activity;
+            var activity = this.Context as Activity;
             view = activity.LayoutInflater.Inflate(Resource.Layout.ViewerLayout, this, false);
 
+            // init UI
             mPdfViewCtrl = view.FindViewById<pdftron.PDF.PDFViewCtrl>(Resource.Id.pdfviewctrl);
+            mToolbarContainer = view.FindViewById<FrameLayout>(Resource.Id.annotation_toolbar_container);
+            mPresetContainer = view.FindViewById<FrameLayout>(Resource.Id.preset_container);
+
+            // setup PDFViewCtrl and ToolManager
             AppUtils.SetupPDFViewCtrl(mPdfViewCtrl, PDFViewCtrlConfig.GetDefaultConfig(this.Context));
+
+            if (activity is FragmentActivity)
+            {
+                mFragmentActivity = activity as FragmentActivity;
+            }
+            mToolManager = ToolManagerBuilder.From().Build(mFragmentActivity, mPdfViewCtrl);
+
+            // setup toolbars
+            SetupAnnotationToolbar();
 
             var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
             mPdfDoc = mPdfViewCtrl.OpenPDFUri(Android.Net.Uri.FromFile(file), "");
 
-            FragmentActivity fragmentActivity = null;
-            if (activity is FragmentActivity)
-            {
-                fragmentActivity = activity as FragmentActivity;
-            }
-            mToolManager = ToolManagerBuilder.From().Build(fragmentActivity, mPdfViewCtrl);
-            mToolManager.SetCanOpenEditToolbarFromPan(true);
-            mToolManager.OpenEditToolbar += (sender, e) =>
-            {
-                mAnnotationToolbar.Show(AnnotationToolbar.StartModeEditToolbar, null, 0, e.Mode, !mAnnotationToolbar.IsShowing);
-            };
+        }
 
-            mAnnotationToolbar = view.FindViewById<AnnotationToolbar>(Resource.Id.annotationtoolbar);
-            mAnnotationToolbar.Setup(mToolManager);
-            mAnnotationToolbar.SetButtonStayDown(true);
-            mAnnotationToolbar.HideButton(AnnotationToolbarButtonId.Close);
-            mAnnotationToolbar.Show();
+        void SetupAnnotationToolbar()
+        {
+            var toolManagerViewModel = (ToolManagerViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(ToolManagerViewModel)));
+            toolManagerViewModel.ToolManager = mToolManager;
+            var presetViewModel = (PresetBarViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(PresetBarViewModel)));
+            var annotationToolbarViewModel = (AnnotationToolbarViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(AnnotationToolbarViewModel)));
 
-            mSeekBar = view.FindViewById<ThumbnailSlider>(Resource.Id.thumbseekbar);
+            mAnnotationToolbarComponent = new AnnotationToolbarComponent(
+                mFragmentActivity,
+                annotationToolbarViewModel,
+                presetViewModel,
+                toolManagerViewModel,
+                new AnnotationToolbarView(mToolbarContainer)
+            );
+            mPresetBarComponent = new PresetBarComponent(
+                mFragmentActivity,
+                mFragmentActivity.SupportFragmentManager,
+                presetViewModel,
+                toolManagerViewModel,
+                new PresetBarView(mPresetContainer)
+            );
+
+            // Create our custom toolbar and pass it to the annotation toolbar UI component
+            mAnnotationToolbarComponent.InflateWithBuilder(
+                    AnnotationToolbarBuilder.WithTag("Custom Toolbar")
+                            .AddToolButton(ToolbarButtonType.Square, DefaultToolbars.ButtonId.Square.Value())
+                            .AddToolButton(ToolbarButtonType.Ink, DefaultToolbars.ButtonId.Ink.Value())
+                            .AddToolButton(ToolbarButtonType.FreeHighlight, DefaultToolbars.ButtonId.FreeHighlight.Value())
+                            .AddToolButton(ToolbarButtonType.Eraser, DefaultToolbars.ButtonId.Eraser.Value())
+                            .AddToolStickyButton(ToolbarButtonType.Undo, DefaultToolbars.ButtonId.Undo.Value())
+                            .AddToolStickyButton(ToolbarButtonType.Redo, DefaultToolbars.ButtonId.Redo.Value())
+            );
         }
 
         void SetupEventHandlers()
         {
-            mPdfViewCtrl.PageNumberChanged += (sender, e) =>
-            {
-                mSeekBar?.SetProgress(e.CurPage);
-            };
-            mAnnotationToolbar.UndoRedo += (sender, e) =>
-            {
-                mSeekBar?.RefreshPageCount();
-            };
+
         }
 
         protected override void OnLayout(bool changed, int l, int t, int r, int b)
@@ -117,22 +144,12 @@ namespace CustomRenderer.Droid
         {
             base.OnConfigurationChanged(newConfig);
 
-            if (mAnnotationToolbar != null && mAnnotationToolbar.IsShowing)
-            {
-                // workaround Xamarin.Forms issue on rotation
-                PostDelayed(() => {
-                    mAnnotationToolbar.OnConfigurationChanged(newConfig);
-                }, 0);
-                
-            }
+
         }
 
         protected override void OnDetachedFromWindow()
         {
             base.OnDetachedFromWindow();
-
-            mSeekBar?.ClearResources();
-            mSeekBar = null;
 
             mPdfViewCtrl?.Destroy();
             mPdfViewCtrl = null;
