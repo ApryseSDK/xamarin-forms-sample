@@ -20,6 +20,7 @@ using AndroidX.Lifecycle;
 using pdftron.PDF.Widget.Preset.Component.View;
 using pdftron.PDF.Widget.Toolbar.Component.View;
 using pdftron.PDF.Widget.Toolbar.Builder;
+using Com.Pdftron.Pdf.Widget.Preset.Signature;
 
 [assembly: ExportRenderer(typeof(ViewerPage), typeof(ViewerPageRenderer))]
 namespace CustomRenderer.Droid
@@ -96,6 +97,7 @@ namespace CustomRenderer.Droid
             toolManagerViewModel.ToolManager = mToolManager;
             var presetViewModel = (PresetBarViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(PresetBarViewModel)));
             var annotationToolbarViewModel = (AnnotationToolbarViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(AnnotationToolbarViewModel)));
+            var signatureViewModel = (SignatureViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(SignatureViewModel)));
 
             mAnnotationToolbarComponent = new AnnotationToolbarComponent(
                 mFragmentActivity,
@@ -109,6 +111,7 @@ namespace CustomRenderer.Droid
                 mFragmentActivity.SupportFragmentManager,
                 presetViewModel,
                 toolManagerViewModel,
+                signatureViewModel,
                 new PresetBarView(mPresetContainer)
             );
 
@@ -119,6 +122,7 @@ namespace CustomRenderer.Droid
                             .AddToolButton(ToolbarButtonType.Ink, DefaultToolbars.ButtonId.Ink.Value())
                             .AddToolButton(ToolbarButtonType.FreeHighlight, DefaultToolbars.ButtonId.FreeHighlight.Value())
                             .AddToolButton(ToolbarButtonType.Eraser, DefaultToolbars.ButtonId.Eraser.Value())
+                            .AddToolButton(ToolbarButtonType.Signature, DefaultToolbars.ButtonId.Signature.Value())
                             .AddToolStickyButton(ToolbarButtonType.Undo, DefaultToolbars.ButtonId.Undo.Value())
                             .AddToolStickyButton(ToolbarButtonType.Redo, DefaultToolbars.ButtonId.Redo.Value())
             );
