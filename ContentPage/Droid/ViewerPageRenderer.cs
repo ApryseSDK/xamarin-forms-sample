@@ -20,7 +20,7 @@ using AndroidX.Lifecycle;
 using pdftron.PDF.Widget.Preset.Component.View;
 using pdftron.PDF.Widget.Toolbar.Component.View;
 using pdftron.PDF.Widget.Toolbar.Builder;
-using Com.Pdftron.Pdf.Widget.Preset.Signature;
+using pdftron.PDF.Widget.Preset.Signature;
 
 [assembly: ExportRenderer(typeof(ViewerPage), typeof(ViewerPageRenderer))]
 namespace CustomRenderer.Droid
