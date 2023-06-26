@@ -54,6 +54,7 @@ namespace CustomRenderer.Droid
 
             try
             {
+                PdfViewCtrlSettingsManager.SetFullScreenMode(this.Context, false);
                 SetupUserInterface();
                 SetupEventHandlers();
                 AddView(view);
