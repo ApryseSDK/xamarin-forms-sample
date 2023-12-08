@@ -8,7 +8,7 @@ using UIKit;
 namespace CustomRenderer.iOS
 {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+	public partial class AppDelegate : Microsoft.Maui.MauiUIApplicationDelegate
 	{
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
