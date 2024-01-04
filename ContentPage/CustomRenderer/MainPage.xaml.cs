@@ -1,6 +1,5 @@
 ﻿using System;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui;
+using Xamarin.Forms;
 
 namespace CustomRenderer
 {

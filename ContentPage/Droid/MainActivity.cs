@@ -13,7 +13,7 @@ namespace CustomRenderer.Droid
         ConfigurationChanges = Android.Content.PM.ConfigChanges.ScreenSize | Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.KeyboardHidden,
         WindowSoftInputMode = SoftInput.AdjustPan,
         Theme = "@style/CustomAppTheme")]
-    public class MainActivity : Microsoft.Maui.MauiAppCompatActivity
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
 
