@@ -1,6 +1,4 @@
 ﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
 using CustomRenderer;
 using CustomRenderer.Droid;
 using Android.App;
@@ -21,7 +19,12 @@ using pdftron.PDF.Widget.Preset.Component.View;
 using pdftron.PDF.Widget.Toolbar.Component.View;
 using pdftron.PDF.Widget.Toolbar.Builder;
 using pdftron.PDF.Widget.Preset.Signature;
+using Microsoft.Maui.Controls.Handlers.Compatibility;
+using Microsoft.Maui.Controls.Platform;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
+// TODO Xamarin.Forms.ExportRendererAttribute is not longer supported. For more details see https://github.com/dotnet/maui/wiki/Using-Custom-Renderers-in-.NET-MAUI
 [assembly: ExportRenderer(typeof(ViewerPage), typeof(ViewerPageRenderer))]
 namespace CustomRenderer.Droid
 {

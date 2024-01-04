@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
 using CustomRenderer;
 using CustomRenderer.Droid;
 using Android.App;
@@ -19,7 +17,12 @@ using Android.Content.Res;
 
 using FragmentActivity = AndroidX.Fragment.App.FragmentActivity;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+using Microsoft.Maui.Controls.Handlers.Compatibility;
+using Microsoft.Maui.Controls.Platform;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
+// TODO Xamarin.Forms.ExportRendererAttribute is not longer supported. For more details see https://github.com/dotnet/maui/wiki/Using-Custom-Renderers-in-.NET-MAUI
 [assembly: ExportRenderer(typeof(AdvancedViewerPage), typeof(AdvancedViewerPageRenderer))]
 namespace CustomRenderer.Droid
 {
