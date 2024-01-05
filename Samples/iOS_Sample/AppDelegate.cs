@@ -1,7 +1,7 @@
 ﻿using pdftron;
 using pdftron.PDF.Controls;
 
-namespace testiOSSampleNet6;
+namespace SimpleiOSViewer;
 
 [Register ("AppDelegate")]
 public class AppDelegate : UIApplicationDelegate {

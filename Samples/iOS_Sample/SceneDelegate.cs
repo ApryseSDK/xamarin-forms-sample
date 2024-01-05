@@ -1,4 +1,4 @@
-﻿namespace testiOSSampleNet6;
+﻿namespace SimpleiOSViewer;
 
 [Register ("SceneDelegate")]
 public class SceneDelegate : UIResponder, IUIWindowSceneDelegate {
