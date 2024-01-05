@@ -1,6 +1,5 @@
-﻿using Microsoft.Maui.Controls.Xaml;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 [assembly:XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CustomRenderer
