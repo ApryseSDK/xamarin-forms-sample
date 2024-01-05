@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{EA18DA46-459A-4F83-887E-0FA12447AFF6}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.iOSSimpleViewer PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.9C10B879-AF08-48FB-ABCC-106208FAC692" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="testiOSSampleNet6/AppDelegate.cs">
+    <Files>
+      <File FileName="testiOSSampleNet6/AppDelegate.cs" Line="23" Column="1" />
+      <File FileName="testiOSSampleNet6/Main.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
