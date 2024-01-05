@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0-ios</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CreatePackage>false</CreatePackage>
+    <!-- <CodesignProvision></CodesignProvision>
+    <CodesignKey>Apple Development: dchan@pdftron.com (2RMRRNG44Y)</CodesignKey> -->
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>SimpleiOSSample</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CreatePackage>false</CreatePackage>
+    <!-- <CodesignProvision></CodesignProvision>
+    <CodesignKey>Apple Development: dchan@pdftron.com (2RMRRNG44Y)</CodesignKey> -->
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="PDFTron.iOS" Version="10.6.1" />
+    <PackageReference Include="PDFTron.iOS.Tools" Version="10.6.1" />
+  </ItemGroup>
+</Project>
