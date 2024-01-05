@@ -8,16 +8,16 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
-    <!-- <CodesignProvision></CodesignProvision>
-    <CodesignKey>Apple Development: dchan@pdftron.com (2RMRRNG44Y)</CodesignKey> -->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
-    <!-- <CodesignProvision></CodesignProvision>
-    <CodesignKey>Apple Development: dchan@pdftron.com (2RMRRNG44Y)</CodesignKey> -->
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="PDFTron.iOS" Version="10.6.1" />
-    <PackageReference Include="PDFTron.iOS.Tools" Version="10.6.1" />
+    <PackageReference Include="PDFTron.iOS">
+      <Version>10.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="PDFTron.iOS.Tools">
+      <Version>10.6.1</Version>
+    </PackageReference>
   </ItemGroup>
 </Project>
