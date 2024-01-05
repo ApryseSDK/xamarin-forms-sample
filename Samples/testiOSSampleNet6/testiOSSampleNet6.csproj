@@ -2,14 +2,14 @@
   <PropertyGroup>
     <TargetFramework>net7.0-ios</TargetFramework>
     <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
     <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
     <!-- <CodesignProvision></CodesignProvision>
     <CodesignKey>Apple Development: dchan@pdftron.com (2RMRRNG44Y)</CodesignKey> -->
-    <WarningLevel>4</WarningLevel>
-    <AssemblyName>SimpleiOSSample</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CreatePackage>false</CreatePackage>

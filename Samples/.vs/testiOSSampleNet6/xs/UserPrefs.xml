@@ -1,7 +1,6 @@
 ﻿<Properties StartupConfiguration="{EA18DA46-459A-4F83-887E-0FA12447AFF6}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.testiOSSampleNet6 PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.628498A7-F303-47F8-8133-8330D61ADF2B" />
   <MonoDevelop.Ide.Workbench ActiveDocument="testiOSSampleNet6/AppDelegate.cs">
     <Files>
       <File FileName="testiOSSampleNet6/AppDelegate.cs" Line="23" Column="1" />
@@ -22,7 +21,8 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.testiOSSampleNet6 PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.628498A7-F303-47F8-8133-8330D61ADF2B" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
