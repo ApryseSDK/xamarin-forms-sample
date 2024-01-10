@@ -1,15 +1,11 @@
-﻿<Properties StartupConfiguration="{EA18DA46-459A-4F83-887E-0FA12447AFF6}|Default">
+﻿<Properties StartupConfiguration="{2FF0840F-6620-4F08-8E29-131269DF0171}|Default">
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.iOSSimpleViewer PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.00008030-0016612236EA802E" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="testiOSSampleNet6/AppDelegate.cs">
-    <Files>
-      <File FileName="testiOSSampleNet6/AppDelegate.cs" Line="13" Column="56" />
-      <File FileName="testiOSSampleNet6/Main.cs" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SampleProjects">
+          <Node name="SampleProjects" expanded="True">
             <Node name="iOSSimpleViewer" selected="True" />
           </Node>
         </State>
