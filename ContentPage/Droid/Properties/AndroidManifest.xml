@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.pdftron.customrenderer" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="33" />
-	<application android:label="CustomRenderer"></application>
+	<application android:label="CustomRenderer">
+		<activity
+            android:name="com.pdftron.pdf.controls.DocumentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+            android:theme="@style/PDFTronAppTheme"
+            android:windowSoftInputMode="adjustPan" />
+    </application>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

@@ -89,7 +89,8 @@ namespace CustomRenderer.Droid
 
         async void DocumentView_OnNavButtonPressed(object sender, EventArgs e)
         {
-            await this.Element.Navigation.PopAsync();
+            //await this.Element.Navigation.PopAsync();
+            DocumentActivity.OpenDocument(activity, GetFile(), GetConfig());
         }
 
         protected override void OnLayout(bool changed, int l, int t, int r, int b)
