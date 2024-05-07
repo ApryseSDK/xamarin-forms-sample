@@ -113,14 +113,67 @@ namespace CustomRenderer.Droid
         private ViewerConfig GetConfig()
         {
             var toolmanagerBuilder = ToolManagerBuilder.From()
+                .DisableToolModes(new ToolManager.ToolMode[]
+                {
+                    ToolManager.ToolMode.AreaMeasureCreate,
+                    ToolManager.ToolMode.ArrowCreate,
+                    ToolManager.ToolMode.CalloutCreate,
+                    ToolManager.ToolMode.CloudCreate,
+                    ToolManager.ToolMode.CountMeasurement,
+                    ToolManager.ToolMode.FileAttachmentCreate,
+                    ToolManager.ToolMode.FormCheckboxCreate,
+                    ToolManager.ToolMode.FormComboBoxCreate,
+                    ToolManager.ToolMode.FormListBoxCreate,
+                    ToolManager.ToolMode.FormRadioGroupCreate,
+                    ToolManager.ToolMode.FormSignatureCreate,
+                    ToolManager.ToolMode.FormTextFieldCreate,
+                    ToolManager.ToolMode.FreeTextDateCreate,
+                    ToolManager.ToolMode.FreeTextSpacingCreate,
+                    ToolManager.ToolMode.DigitalSignature,
+                    ToolManager.ToolMode.LineCreate,
+                    ToolManager.ToolMode.OvalCreate,
+                    ToolManager.ToolMode.PerimeterMeasureCreate,
+                    ToolManager.ToolMode.PolygonCreate,
+                    ToolManager.ToolMode.PolylineCreate,
+                    ToolManager.ToolMode.RectAreaMeasureCreate,
+                    ToolManager.ToolMode.RectCreate,
+                    ToolManager.ToolMode.RectLink,
+                    ToolManager.ToolMode.RectRedaction,
+                    ToolManager.ToolMode.RubberStamper,
+                    ToolManager.ToolMode.RulerCreate,
+                    ToolManager.ToolMode.SoundCreate,
+                    ToolManager.ToolMode.Stamper,
+                    ToolManager.ToolMode.TextLinkCreate,
+                    ToolManager.ToolMode.TextRedaction,
+                })
                 .SetAutoSelect(true);
             var builder = new ViewerConfig.Builder();
             var config = builder
-                .MultiTabEnabled(true)
+                .MultiTabEnabled(false)
                 .FullscreenModeEnabled(false)
                 .UseSupportActionBar(false)
                 .ToolManagerBuilder(toolmanagerBuilder)
+                .HideToolbars(new string[]
+                {
+                    pdftron.PDF.Widget.Toolbar.Component.DefaultToolbars.TagDrawToolbar,
+                    pdftron.PDF.Widget.Toolbar.Component.DefaultToolbars.TagFavoriteToolbar,
+                    pdftron.PDF.Widget.Toolbar.Component.DefaultToolbars.TagInsertToolbar,
+                    pdftron.PDF.Widget.Toolbar.Component.DefaultToolbars.TagMeasureToolbar,
+                    pdftron.PDF.Widget.Toolbar.Component.DefaultToolbars.TagPensToolbar,
+                    pdftron.PDF.Widget.Toolbar.Component.DefaultToolbars.TagPrepareFormToolbar,
+                    pdftron.PDF.Widget.Toolbar.Component.DefaultToolbars.TagRedactionToolbar,
+                })
                 .SaveCopyExportPath(this.Context.FilesDir.AbsolutePath)
+                .ShowAnnotationsList(false)
+                .ShowBookmarksView(false)
+                .ShowBottomToolbar(false)
+                .ShowEditPagesOption(false)
+                .ShowSaveCopyOption(false)
+                .ShowShareOption(false)
+                .ShowDocumentSettingsOption(false)
+                .ShowDigitalSignaturesOption(false)
+                .ShowPrintOption(false)
+                .ShowCloseTabOption(false)
                 .Build();
             return config;
         }
