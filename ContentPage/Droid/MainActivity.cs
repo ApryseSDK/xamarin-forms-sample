@@ -12,7 +12,7 @@ namespace CustomRenderer.Droid
         Icon = "@drawable/icon", MainLauncher = true,
         ConfigurationChanges = Android.Content.PM.ConfigChanges.ScreenSize | Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.KeyboardHidden,
         WindowSoftInputMode = SoftInput.AdjustPan,
-        Theme = "@style/CustomAppTheme")]
+        Theme = "@style/PDFTronAppTheme")]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
