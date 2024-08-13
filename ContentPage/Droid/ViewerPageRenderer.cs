@@ -6,15 +6,11 @@ using CustomRenderer.Droid;
 using Android.App;
 using Android.Content;
 using Android.Views;
-using Android.Widget;
 
-using pdftron.PDF.Tools;
 using pdftron.PDF.Tools.Utils;
 using pdftron.PDF.Config;
 using Android.Content.Res;
 using AndroidX.Fragment.App;
-using pdftron.PDF.Widget.Toolbar.Component;
-using pdftron.PDF.Widget.Preset.Component;
 
 [assembly: ExportRenderer(typeof(ViewerPage), typeof(ViewerPageRenderer))]
 namespace CustomRenderer.Droid
@@ -25,11 +21,6 @@ namespace CustomRenderer.Droid
 
         private pdftron.PDF.PDFViewCtrl mPdfViewCtrl;
         private pdftron.PDF.PDFDoc mPdfDoc;
-        private ToolManager mToolManager;
-        private AnnotationToolbarComponent mAnnotationToolbarComponent;
-        private PresetBarComponent mPresetBarComponent;
-        private FrameLayout mToolbarContainer;
-        private FrameLayout mPresetContainer;
 
         private FragmentActivity mFragmentActivity;
 
@@ -65,8 +56,6 @@ namespace CustomRenderer.Droid
 
             // init UI
             mPdfViewCtrl = view.FindViewById<pdftron.PDF.PDFViewCtrl>(Resource.Id.pdfviewctrl);
-            mToolbarContainer = view.FindViewById<FrameLayout>(Resource.Id.annotation_toolbar_container);
-            mPresetContainer = view.FindViewById<FrameLayout>(Resource.Id.preset_container);
 
             // setup PDFViewCtrl and ToolManager
             AppUtils.SetupPDFViewCtrl(mPdfViewCtrl, PDFViewCtrlConfig.GetDefaultConfig(this.Context));
@@ -75,7 +64,6 @@ namespace CustomRenderer.Droid
             {
                 mFragmentActivity = activity as FragmentActivity;
             }
-            mToolManager = ToolManagerBuilder.From().Build(mFragmentActivity, mPdfViewCtrl);
 
             var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
             mPdfDoc = mPdfViewCtrl.OpenPDFUri(Android.Net.Uri.FromFile(file), "");
