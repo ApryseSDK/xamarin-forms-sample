@@ -15,12 +15,6 @@ using Android.Content.Res;
 using AndroidX.Fragment.App;
 using pdftron.PDF.Widget.Toolbar.Component;
 using pdftron.PDF.Widget.Preset.Component;
-using pdftron.PDF.Widget.Toolbar;
-using AndroidX.Lifecycle;
-using pdftron.PDF.Widget.Preset.Component.View;
-using pdftron.PDF.Widget.Toolbar.Component.View;
-using pdftron.PDF.Widget.Toolbar.Builder;
-using pdftron.PDF.Widget.Preset.Signature;
 
 [assembly: ExportRenderer(typeof(ViewerPage), typeof(ViewerPageRenderer))]
 namespace CustomRenderer.Droid
@@ -83,49 +77,9 @@ namespace CustomRenderer.Droid
             }
             mToolManager = ToolManagerBuilder.From().Build(mFragmentActivity, mPdfViewCtrl);
 
-            // setup toolbars
-            SetupAnnotationToolbar();
-
             var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
             mPdfDoc = mPdfViewCtrl.OpenPDFUri(Android.Net.Uri.FromFile(file), "");
 
-        }
-
-        void SetupAnnotationToolbar()
-        {
-            var toolManagerViewModel = (ToolManagerViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(ToolManagerViewModel)));
-            toolManagerViewModel.ToolManager = mToolManager;
-            var presetViewModel = (PresetBarViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(PresetBarViewModel)));
-            var annotationToolbarViewModel = (AnnotationToolbarViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(AnnotationToolbarViewModel)));
-            var signatureViewModel = (SignatureViewModel)ViewModelProviders.Of(mFragmentActivity).Get(Java.Lang.Class.FromType(typeof(SignatureViewModel)));
-
-            mAnnotationToolbarComponent = new AnnotationToolbarComponent(
-                mFragmentActivity,
-                annotationToolbarViewModel,
-                presetViewModel,
-                toolManagerViewModel,
-                new AnnotationToolbarView(mToolbarContainer)
-            );
-            mPresetBarComponent = new PresetBarComponent(
-                mFragmentActivity,
-                mFragmentActivity.SupportFragmentManager,
-                presetViewModel,
-                toolManagerViewModel,
-                signatureViewModel,
-                new PresetBarView(mPresetContainer)
-            );
-
-            // Create our custom toolbar and pass it to the annotation toolbar UI component
-            mAnnotationToolbarComponent.InflateWithBuilder(
-                    AnnotationToolbarBuilder.WithTag("Custom Toolbar")
-                            .AddToolButton(ToolbarButtonType.Square, DefaultToolbars.ButtonId.Square.Value())
-                            .AddToolButton(ToolbarButtonType.Ink, DefaultToolbars.ButtonId.Ink.Value())
-                            .AddToolButton(ToolbarButtonType.FreeHighlight, DefaultToolbars.ButtonId.FreeHighlight.Value())
-                            .AddToolButton(ToolbarButtonType.Eraser, DefaultToolbars.ButtonId.Eraser.Value())
-                            .AddToolButton(ToolbarButtonType.Signature, DefaultToolbars.ButtonId.Signature.Value())
-                            .AddToolStickyButton(ToolbarButtonType.Undo, DefaultToolbars.ButtonId.Undo.Value())
-                            .AddToolStickyButton(ToolbarButtonType.Redo, DefaultToolbars.ButtonId.Redo.Value())
-            );
         }
 
         void SetupEventHandlers()
