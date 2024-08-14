@@ -20,7 +20,6 @@ namespace CustomRenderer.iOS
         private PDFViewCtrl mPdfViewCtrl;
         private PDFDoc mPdfDoc;
         private PTToolManager mToolManager;
-        private PTThumbnailSliderViewController mThumbnailSliderViewController;
 
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
         {
@@ -34,7 +33,6 @@ namespace CustomRenderer.iOS
             try
             {
                 SetupUserInterface();
-                SetupEventHandlers();
             }
             catch (Exception ex)
             {
@@ -82,46 +80,12 @@ namespace CustomRenderer.iOS
             mToolManager = new PTToolManager(mPdfViewCtrl);
             mPdfViewCtrl.ToolManager = mToolManager;
 
-            mThumbnailSliderViewController = new PTThumbnailSliderViewController(mPdfViewCtrl);
-            mThumbnailSliderViewController.View.TranslatesAutoresizingMaskIntoConstraints = false;
-
-            AddChildViewController(mThumbnailSliderViewController);
-            View.AddSubview(mThumbnailSliderViewController.View);
-
             bool isIOS11 = UIDevice.CurrentDevice.CheckSystemVersion(11, 0);
             var bottomAnchor = this.View.BottomAnchor;
             if (isIOS11)
             {
                 bottomAnchor = this.View.SafeAreaLayoutGuide.BottomAnchor;
             }
-
-            NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[] {
-                mThumbnailSliderViewController.View.LeadingAnchor.ConstraintEqualTo(this.View.LeadingAnchor),
-                mThumbnailSliderViewController.View.WidthAnchor.ConstraintEqualTo(this.View.WidthAnchor),
-                mThumbnailSliderViewController.View.BottomAnchor.ConstraintEqualTo(bottomAnchor)
-            });
-            mThumbnailSliderViewController.DidMoveToParentViewController(this);
-        }
-
-        void SetupEventHandlers()
-        {
-            mPdfViewCtrl.GotThumbAsync += (sender, e) =>
-            {
-                if (e.Image == null)
-                {
-                    return;
-                }
-                //this.mThumbnailSliderViewController?.SetThumbnail(e.Image, e.Page_num);
-            };
-            mPdfViewCtrl.PageNumberChangedFrom += (sender, e) =>
-            {
-                //mThumbnailSliderViewController?.SetSliderValue(e.NewPageNumber);
-            };
-
-            mToolManager.ToolManagerToolChanged += (sender, e) =>
-            {
-                //mAnnotationToolbar?.SetButtonForTool(mToolManager.Tool);
-            };
         }
     }
 }
