@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.Views;
 
+using pdftron.PDF.Tools;
 using pdftron.PDF.Tools.Utils;
 using pdftron.PDF.Config;
 using Android.Content.Res;
@@ -21,6 +22,7 @@ namespace CustomRenderer.Droid
 
         private pdftron.PDF.PDFViewCtrl mPdfViewCtrl;
         private pdftron.PDF.PDFDoc mPdfDoc;
+        private ToolManager mToolManager;
 
         private FragmentActivity mFragmentActivity;
 
@@ -64,6 +66,7 @@ namespace CustomRenderer.Droid
             {
                 mFragmentActivity = activity as FragmentActivity;
             }
+            mToolManager = ToolManagerBuilder.From().Build(mFragmentActivity, mPdfViewCtrl);
 
             var file = Utils.CopyResourceToLocal(this.Context, Resource.Raw.sample, "sample", ".pdf");
             mPdfDoc = mPdfViewCtrl.OpenPDFUri(Android.Net.Uri.FromFile(file), "");
