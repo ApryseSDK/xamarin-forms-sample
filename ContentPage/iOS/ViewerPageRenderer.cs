@@ -20,8 +20,6 @@ namespace CustomRenderer.iOS
         private PDFViewCtrl mPdfViewCtrl;
         private PDFDoc mPdfDoc;
         private PTToolManager mToolManager;
-        private PTAnnotationToolbar mAnnotationToolbar;
-        private PTThumbnailSliderViewController mThumbnailSliderViewController;
 
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
         {
@@ -56,18 +54,6 @@ namespace CustomRenderer.iOS
         public override void ViewWillTransitionToSize(CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
         {
             base.ViewWillTransitionToSize(toSize, coordinator);
-
-            coordinator.AnimateAlongsideTransition((obj) =>
-            {
-                var orientation = UIDevice.CurrentDevice.Orientation;
-                if (mAnnotationToolbar != null)
-                {
-                    mAnnotationToolbar.RotateToOrientation(orientation);
-                }
-            }, (obj) =>
-            {
-
-            });
         }
 
         void SetupUserInterface()
@@ -95,65 +81,20 @@ namespace CustomRenderer.iOS
             mToolManager = new PTToolManager(mPdfViewCtrl);
             mPdfViewCtrl.ToolManager = mToolManager;
 
-            mAnnotationToolbar = new PTAnnotationToolbar(mToolManager);
-            View.AddSubview(mAnnotationToolbar);
-
-            mAnnotationToolbar.TranslatesAutoresizingMaskIntoConstraints = false;
-            NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[] {
-                mAnnotationToolbar.LeadingAnchor.ConstraintEqualTo(this.View.LeadingAnchor),
-                mAnnotationToolbar.WidthAnchor.ConstraintEqualTo(this.View.WidthAnchor),
-                mAnnotationToolbar.TopAnchor.ConstraintEqualTo(this.View.LayoutMarginsGuide.TopAnchor)
-            });
-
-            mThumbnailSliderViewController = new PTThumbnailSliderViewController(mPdfViewCtrl);
-            mThumbnailSliderViewController.View.TranslatesAutoresizingMaskIntoConstraints = false;
-
-            AddChildViewController(mThumbnailSliderViewController);
-            View.AddSubview(mThumbnailSliderViewController.View);
-
             bool isIOS11 = UIDevice.CurrentDevice.CheckSystemVersion(11, 0);
             var bottomAnchor = this.View.BottomAnchor;
             if (isIOS11)
             {
                 bottomAnchor = this.View.SafeAreaLayoutGuide.BottomAnchor;
             }
-
-            NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[] {
-                mThumbnailSliderViewController.View.LeadingAnchor.ConstraintEqualTo(this.View.LeadingAnchor),
-                mThumbnailSliderViewController.View.WidthAnchor.ConstraintEqualTo(this.View.WidthAnchor),
-                mThumbnailSliderViewController.View.BottomAnchor.ConstraintEqualTo(bottomAnchor)
-            });
-            mThumbnailSliderViewController.DidMoveToParentViewController(this);
         }
-
         void SetupEventHandlers()
-        {
-            mPdfViewCtrl.GotThumbAsync += (sender, e) =>
             {
-                if (e.Image == null)
-                {
-                    return;
-                }
-                //this.mThumbnailSliderViewController?.SetThumbnail(e.Image, e.Page_num);
-            };
-            mPdfViewCtrl.PageNumberChangedFrom += (sender, e) =>
-            {
-                //mThumbnailSliderViewController?.SetSliderValue(e.NewPageNumber);
-            };
+                mPdfViewCtrl.PageNumberChangedFrom += (sender, e) =>
+                {};
 
-            mToolManager.ToolManagerToolChanged += (sender, e) =>
-            {
-                mAnnotationToolbar?.SetButtonForTool(mToolManager.Tool);
-            };
-
-            mAnnotationToolbar.AnnotationToolbarDidCancel += (sender, e) =>
-            {
-                mAnnotationToolbar.Hidden = false;
-            };
-            mAnnotationToolbar.ToolShouldGoBackToPan = (annotationToolbar) =>
-            {
-                return false;
-            };
+                mToolManager.ToolManagerToolChanged += (sender, e) =>
+                {};
+            }
         }
     }
-}
