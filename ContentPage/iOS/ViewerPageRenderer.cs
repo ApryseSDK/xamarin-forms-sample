@@ -33,6 +33,7 @@ namespace CustomRenderer.iOS
             try
             {
                 SetupUserInterface();
+                SetupEventHandlers();
             }
             catch (Exception ex)
             {
@@ -87,5 +88,13 @@ namespace CustomRenderer.iOS
                 bottomAnchor = this.View.SafeAreaLayoutGuide.BottomAnchor;
             }
         }
+        void SetupEventHandlers()
+            {
+                mPdfViewCtrl.PageNumberChangedFrom += (sender, e) =>
+                {};
+
+                mToolManager.ToolManagerToolChanged += (sender, e) =>
+                {};
+            }
+        }
     }
-}
